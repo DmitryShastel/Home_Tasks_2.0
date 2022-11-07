@@ -19,17 +19,17 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/incubator/Incubator_2.0/Home_Tasks_2.0/simple-react-homeworks&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;yarn&quot;,
-    &quot;ts.external.directory.path&quot;: &quot;C:\\incubator\\Incubator_2.0\\Home_Tasks_2.0\\simple-react-homeworks\\node_modules\\typescript\\lib&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "C:/incubator/Incubator_2.0/Native_JS_2.0/Folder_1/native_js_2.0",
+    "nodejs_package_manager_path": "yarn",
+    "ts.external.directory.path": "C:\\incubator\\Incubator_2.0\\Home_Tasks_2.0\\simple-react-homeworks\\node_modules\\typescript\\lib",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RunManager">
     <configuration name="start" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
       <package-json value="$PROJECT_DIR$/package.json" />
@@ -57,7 +57,7 @@
       <updated>1665236355187</updated>
       <workItem from="1665236357857" duration="5344000" />
       <workItem from="1667799724794" duration="9217000" />
-      <workItem from="1667811169552" duration="152000" />
+      <workItem from="1667811169552" duration="3813000" />
     </task>
     <servers />
   </component>

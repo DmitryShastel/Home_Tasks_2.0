@@ -7,12 +7,13 @@ export type AffairPropsType = {
 }
 
 function Affair(props: AffairPropsType) {
-    const deleteCallback = () => {}
+    const deleteCallback = () => {
+        props.deleteAffairCallback(props.affair._id)
+    }
 
     return (
         <div>
-            //some text 111111
-
+            {props.affair.name}
             <button onClick={deleteCallback}>X</button>
         </div>
     )
