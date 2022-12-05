@@ -18,7 +18,7 @@ export function Affairs(props: AffairsPropsType) {
     ))
 
     const setAll = () => {}
-    const setHigh = () => {}
+    const setHigh = () => {props.setFilter('high')}
     const setMiddle = () => {}
     const setLow = () => {}
 
