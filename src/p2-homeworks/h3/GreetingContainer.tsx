@@ -8,7 +8,7 @@ type GreetingContainerPropsType = {
 }
 
 const GreetingContainer: React.FC<GreetingContainerPropsType> = ({users, addUserCallback}) => {
-    const [name, setName] = useState<string>('') 
+    const [name, setName] = useState<string>('')
     const [error, setError] = useState<string>('')
 
     const setNameCallback = (e: ChangeEvent<HTMLInputElement>) => { // need to fix any
