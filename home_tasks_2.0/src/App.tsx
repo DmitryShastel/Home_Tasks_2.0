@@ -1,13 +1,11 @@
 import React from 'react';
 import './App.css';
-import {Hw9} from "./HW9/HW9";
+import {AppRoot} from "./SocialNetwork/AppRoot";
 
-function App() {
+export function App() {
     return (
         <div className="App">
-            <Hw9/>
+            <AppRoot/>
         </div>
     );
 }
-
-export default App;
