@@ -1,4 +1,13 @@
-.container {
+.homeBody {
+    display: flex;
+    flex-direction: row;
+    height: 100%;
+    width: 100%;
+    margin: 0 auto;
+    padding: 0;
+}
+
+.menuPage {
     height: 100%;
     width: 20%;
     padding: 1% 0 1% 1.5%;
@@ -6,19 +15,25 @@
     background: darkgrey;
 }
 
-.links {
+.content {
+    width: 100%;
+    background: greenyellow;
+    padding: 1% 1%;
+}
+
+.menuLink {
     padding: 0.5% 0.5%;
     outline: none;
+    text-decoration: none;
     color: gold;
 }
 
-a:hover {
+.menuLink:hover {
     color: #154088;
     text-decoration: none;
-    cursor: pointer;
 }
 
-a:visited {
-    color: #497DDD;
+.menuLink:active {
     text-decoration: none;
+    color: #fff;
 }
