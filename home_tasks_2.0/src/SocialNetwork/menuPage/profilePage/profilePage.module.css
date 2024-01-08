@@ -1,0 +1,9 @@
+.post {
+    font-family: "Arial Black";
+    font-size: 15px;
+}
+
+.post img {
+    height: 30px;
+    margin-top: 1%;
+}
