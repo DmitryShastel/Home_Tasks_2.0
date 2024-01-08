@@ -1,7 +1,7 @@
 import {combineReducers, createStore} from "redux";
 import {profileReducer} from "./profileReducer";
 
-const rootReducer = combineReducers({
+export  const rootReducer = combineReducers({
     posts: profileReducer,
 })
 

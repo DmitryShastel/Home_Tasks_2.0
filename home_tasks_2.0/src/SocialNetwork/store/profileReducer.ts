@@ -28,6 +28,13 @@ export type ActionsType = AddPostACType
 
 export const profileReducer = (state: PostsType = InitialState, action: ActionsType): PostsType => {
     switch (action.type) {
+        case "ADD-POST": {
+            let newPost: PostType = {id: new Date().getTime(), title: action.newTitle, likeCount: '0'}
+            return {
+                ...state,
+                posts: [newPost, ...state.posts]
+            }
+        }
         default:
             return state;
     }
