@@ -1,0 +1,13 @@
+.container {
+    font-family: "Arial Black";
+    font-size: 10px;
+}
+
+
+.container img {
+    height: 50px;
+}
+
+.container button {
+    margin: 1% 0 1% 0;
+}
