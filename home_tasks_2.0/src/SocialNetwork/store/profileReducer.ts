@@ -3,18 +3,15 @@ export type PostType = {
     title: string
     likeCount: string
 }
-
 export type PostsType = {
     posts: PostType[]
     newPostText: string
 }
-
 export type AddPostACType = {
     type: 'ADD-POST',
     newTitle: string
 }
-
-export const InitialState: PostsType = {
+const InitialState: PostsType = {
     posts: [
         {id: 1, title: 'Test tile', likeCount: 'like185'},
         {id: 2, title: 'Test tile2', likeCount: 'like1'},
@@ -22,9 +19,7 @@ export const InitialState: PostsType = {
     newPostText: ''
 }
 
-
 export type ActionsType = AddPostACType
-
 
 export const profileReducer = (state: PostsType = InitialState, action: ActionsType): PostsType => {
     switch (action.type) {

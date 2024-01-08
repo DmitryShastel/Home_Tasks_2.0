@@ -6,3 +6,9 @@
 .block {
     flex: 1;
 }
+
+.block img {
+    height: 15px;
+    margin-right: 5px;
+    border-radius: 25%;
+}
