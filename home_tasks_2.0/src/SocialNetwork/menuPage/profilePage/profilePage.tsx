@@ -1,7 +1,14 @@
 import React from 'react';
 import profilePageStyle from './profilePage.module.css'
+import {PostType} from "../../store/profileReducer";
+
+
+type ProfilePageType = {
+    posts: PostType[]
+}
 
 export const ProfilePage = () => {
+
 
     const postState = {
         posts: [
@@ -10,7 +17,6 @@ export const ProfilePage = () => {
         ],
         newPostText: ''
     }
-
     const posts = postState.posts.map((post) =>
         <div>
             <span></span>
