@@ -6,7 +6,7 @@ export const MenuPage = () => {
 
     const pathProfile = '/profile';
     const pathMessage = '/message';
-    const pathUser = '/user';
+    const pathUser = '/users';
 
 
     return (

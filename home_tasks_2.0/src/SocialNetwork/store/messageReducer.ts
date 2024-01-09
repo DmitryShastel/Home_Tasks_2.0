@@ -17,6 +17,7 @@ export type AddMessageActionType = {
     type: 'ADD-MESSAGE',
     newMessage: string
 }
+
 type AddMessageACType = (newMessage: string) =>  AddMessageActionType
 
 type ActionsType = AddMessageActionType
@@ -46,6 +47,7 @@ export const messageReducer = (state: DialogsType = InitialState, action: Action
             return state;
     }
 }
+
 export const addMessageAC: AddMessageACType = (newMessage: string): AddMessageActionType => {
     return {
         type: 'ADD-MESSAGE',

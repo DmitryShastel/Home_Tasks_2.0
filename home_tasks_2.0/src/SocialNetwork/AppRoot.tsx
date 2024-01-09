@@ -15,7 +15,7 @@ export const AppRoot = () => {
                 <Route path='/' element={<MenuPage/>}>
                     <Route path='/profile' element={<ProfilePage/>}/>
                     <Route path='/message' element={<MessagePage/>}/>
-                    <Route path='/user' element={<UserPage/>}/>
+                    <Route path='/users' element={<UserPage/>}/>
                 </Route>
                 <Route path="*" element={<MenuPage/>}/>
             </Routes>

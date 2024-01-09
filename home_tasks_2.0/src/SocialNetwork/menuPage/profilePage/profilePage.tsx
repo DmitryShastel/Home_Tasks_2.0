@@ -1,13 +1,12 @@
-import React, {ChangeEvent, useState} from 'react';
+import React from 'react';
 import profilePageStyle from './profilePage.module.css'
 import {useDispatch, useSelector} from "react-redux";
 import {AppRootStateType} from "../../store/store";
 import {addPostAC} from "../../store/profileReducer";
+import {AddItemForm} from "../../components/superInput";
 
 
 export const ProfilePage = () => {
-
-    const [postTitle, setPostTitle] = useState('')
 
     const dispatch = useDispatch()
     const posts = useSelector((state: AppRootStateType) => state.posts.posts)
@@ -21,13 +20,10 @@ export const ProfilePage = () => {
         </div>)
 
 
-    const addPost = () => {
-        dispatch(addPostAC(postTitle))
-        setPostTitle('')
+    const addPost = (title: string) => {
+        dispatch(addPostAC(title))
     }
-    const onPostChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
-        setPostTitle(e.currentTarget.value)
-    }
+
 
     return (
         <div>
@@ -37,13 +33,7 @@ export const ProfilePage = () => {
                 <>Description</>
                 <h4>My posts</h4>
             </div>
-            <input
-                value={postTitle}
-                onChange={onPostChangeHandler}
-            />
-            <div>
-                <button onClick={addPost}>Add post</button>
-            </div>
+            <AddItemForm callback={addPost}/>
             <div className={profilePageStyle.post}>
                 {postsItem}
             </div>
