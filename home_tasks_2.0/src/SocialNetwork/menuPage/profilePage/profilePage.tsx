@@ -3,7 +3,7 @@ import profilePageStyle from './profilePage.module.css'
 import {useDispatch, useSelector} from "react-redux";
 import {AppRootStateType} from "../../store/store";
 import {addPostAC} from "../../store/profileReducer";
-import {AddItemForm} from "../../components/superInput";
+import {AddItemForm} from "../../components/addItemForm";
 
 
 export const ProfilePage = () => {
@@ -20,8 +20,8 @@ export const ProfilePage = () => {
         </div>)
 
 
-    const addPost = (title: string) => {
-        dispatch(addPostAC(title))
+    const addPost = (newPostTitle: string) => {
+        dispatch(addPostAC(newPostTitle))
     }
 
 

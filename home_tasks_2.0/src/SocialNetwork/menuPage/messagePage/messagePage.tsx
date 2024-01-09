@@ -1,12 +1,11 @@
-import React, {ChangeEvent, useState} from 'react';
+import React from 'react';
 import messagePageStyle from './messagePage.module.css'
 import {useDispatch, useSelector} from "react-redux";
 import {AppRootStateType} from "../../store/store";
 import {addMessageAC} from "../../store/messageReducer";
+import {AddItemForm} from "../../components/addItemForm";
 
 export const MessagePage = () => {
-
-    const [messageTitle, setMessageTitle] = useState('')
 
     const dispatch = useDispatch()
     const messages = useSelector((state: AppRootStateType) => state.messages.messages)
@@ -29,13 +28,8 @@ export const MessagePage = () => {
         </div>
     )
 
-    const addMessage = () => {
+    const addMessage = (messageTitle: string) => {
         dispatch(addMessageAC(messageTitle))
-        setMessageTitle('')
-    }
-
-    const onMessageChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
-        setMessageTitle(e.currentTarget.value)
     }
 
 
@@ -45,13 +39,7 @@ export const MessagePage = () => {
             <div className={messagePageStyle.block}>
                 {messageList}
                 <div>
-                    <input
-                        value={messageTitle}
-                        onChange={onMessageChangeHandler}
-                    />
-                    <div>
-                        <button onClick={addMessage}>Add message</button>
-                    </div>
+                    <AddItemForm callback={addMessage}/>
                 </div>
             </div>
         </div>

@@ -39,9 +39,9 @@ export const profileReducer = (state: PostsType = InitialState, action: ActionsT
     }
 }
 
-export const addPostAC: AddPostACType = (newTitle: string): AddPostActionType => {
+export const addPostAC: AddPostACType = (newPostTitle: string): AddPostActionType => {
     return {
         type: 'ADD-POST',
-        newTitle
+        newTitle: newPostTitle
     }
 }
