@@ -1,6 +1,6 @@
 import {addMessageAC, AddMessageActionType, DialogsType, messageReducer} from "./messageReducer";
 
-describe('messageReducer', () => {
+describe('messageReducer add new message', () => {
     let InitialState: DialogsType;
 
     beforeEach(() => {

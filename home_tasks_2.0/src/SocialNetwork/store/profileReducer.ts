@@ -8,8 +8,9 @@ export type PostsType = {
     newPostText: string
 }
 export type AddPostACType = (newTitle: string) => AddPostActionType
-type AddPostActionType = {
-    type: 'ADD-POST',
+export type AddPostActionType = {
+    // type: 'ADD-POST',
+    type: string,
     newTitle: string
 }
 

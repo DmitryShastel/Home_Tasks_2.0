@@ -10,7 +10,7 @@ type LocationType = {
     country: string
     city: string
 }
-type UsersType = {
+export type UsersType = {
     users: UserType[]
 }
 
