@@ -24,7 +24,6 @@ export const ProfilePage = () => {
         dispatch(addPostAC(newPostTitle))
     }
 
-
     return (
         <div>
             <img

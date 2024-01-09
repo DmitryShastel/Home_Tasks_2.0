@@ -19,7 +19,6 @@ export const MessagePage = () => {
             <span>{d.name}</span>
         </div>
     )
-
     const messageList = messages.map(m =>
         <div>
             <span><img
@@ -27,12 +26,10 @@ export const MessagePage = () => {
             <span>{m.message}</span>
         </div>
     )
-
     const addMessage = (messageTitle: string) => {
         dispatch(addMessageAC(messageTitle))
     }
-
-
+    
     return (
         <div className={messagePageStyle.container}>
             <div className={messagePageStyle.block}>{dialogsList}</div>

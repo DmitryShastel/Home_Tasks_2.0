@@ -11,16 +11,14 @@ export type DialogsType = {
     messages: MessageType[]
     newMessageText: string
 }
-
-
 export type AddMessageActionType = {
     type: 'ADD-MESSAGE',
     newMessage: string
 }
 
 type AddMessageACType = (newMessage: string) =>  AddMessageActionType
-
 type ActionsType = AddMessageActionType
+
 const InitialState: DialogsType = {
     dialogs: [
         {id: 1, name: 'Dima'},
