@@ -5,6 +5,7 @@ import {ProfilePage} from "./menuPage/profilePage/profilePage";
 import {MessagePage} from "./menuPage/messagePage/messagePage";
 import {UserPage} from "./menuPage/userPage/userPage";
 import {MenuPage} from "./menuPage/menuPage";
+import {NotFoundPage} from "./menuPage/notFoundPage";
 
 
 export const AppRoot = () => {
@@ -17,7 +18,7 @@ export const AppRoot = () => {
                     <Route path='/message' element={<MessagePage/>}/>
                     <Route path='/users' element={<UserPage/>}/>
                 </Route>
-                <Route path="*" element={<MenuPage/>}/>
+                <Route path="*" element={<NotFoundPage/>}/>
             </Routes>
         </>
     );
