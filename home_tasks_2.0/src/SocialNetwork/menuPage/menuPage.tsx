@@ -16,19 +16,19 @@ export const MenuPage = () => {
                     <div className={menuPageStyle.links}>
                         <NavLink
                             to={pathProfile}
-                            className={({isActive}) => isActive ? menuPageStyle.active : menuPageStyle.menuLink}
+                            className={navData => navData.isActive ? menuPageStyle.active : menuPageStyle.menuLink}
                         >Profile</NavLink>
                     </div>
                     <div className={menuPageStyle.links}>
                         <NavLink
                             to={pathMessage}
-                            className={({isActive}) => isActive ? menuPageStyle.active : menuPageStyle.menuLink}
+                            className={navData => navData.isActive ? menuPageStyle.active : menuPageStyle.menuLink}
                         >Message</NavLink>
                     </div>
                     <div className={menuPageStyle.links}>
                         <NavLink
                             to={pathUser}
-                            className={({isActive}) => isActive ? menuPageStyle.active : menuPageStyle.menuLink}
+                            className={navData => navData.isActive ? menuPageStyle.active : menuPageStyle.menuLink}
                         >Users</NavLink>
                     </div>
                 </div>

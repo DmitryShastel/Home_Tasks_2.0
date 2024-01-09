@@ -6,18 +6,20 @@ type MessageType = {
     id: number
     message: string
 }
-type DialogsType = {
+export type DialogsType = {
     dialogs: DialogType[]
     messages: MessageType[]
     newMessageText: string
 }
 
-type AddMessageACType = {
+
+export type AddMessageActionType = {
     type: 'ADD-MESSAGE',
     newMessage: string
 }
+type AddMessageACType = (newMessage: string) =>  AddMessageActionType
 
-type ActionsType = AddMessageACType
+type ActionsType = AddMessageActionType
 const InitialState: DialogsType = {
     dialogs: [
         {id: 1, name: 'Dima'},
@@ -44,9 +46,7 @@ export const messageReducer = (state: DialogsType = InitialState, action: Action
             return state;
     }
 }
-
-
-export const addMessageAC = (newMessage: string): AddMessageACType => {
+export const addMessageAC: AddMessageACType = (newMessage: string): AddMessageActionType => {
     return {
         type: 'ADD-MESSAGE',
         newMessage
