@@ -1,0 +1,60 @@
+.toDoTitle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.toDo {
+    margin-right: 5%;
+}
+
+.toDoTitle button {
+    font-size: 10px;
+    margin: 2% 0 0 5%;
+    cursor: pointer;
+}
+
+.toDoInput {
+    display: flex;
+    align-items: center;
+    margin-bottom: 5%;
+}
+
+.toDoInput input {
+    width: 80%;
+    margin-right: 3%;
+}
+
+.list ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.list li {
+    display: flex;
+    align-items: center;
+    padding-bottom: 10%;
+    font-family: sans-serif;
+}
+
+.list li span {
+    padding: 0 0 0 5%;
+}
+
+.list button {
+    font-size: 10px;
+    margin: 0 0 0 3%;
+    cursor: pointer;
+}
+
+.buttons {
+    display: flex;
+    justify-content: space-between;
+}
+
+.buttons button {
+    flex-grow: 1;
+    font-family: "Baskerville Old Face";
+    cursor: pointer;
+}
