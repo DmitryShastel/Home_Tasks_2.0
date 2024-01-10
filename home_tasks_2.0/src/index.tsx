@@ -5,7 +5,7 @@ import {App} from './App';
 import reportWebVitals from './reportWebVitals';
 import {BrowserRouter} from "react-router-dom";
 import {Provider} from "react-redux";
-import {store} from "./SocialNetwork/store/store";
+import {storeSocialNetwork} from "./SocialNetwork/store/store";
 
 
 const root = ReactDOM.createRoot(
@@ -13,7 +13,7 @@ const root = ReactDOM.createRoot(
 );
 root.render(
     <React.StrictMode>
-        <Provider store={store}>
+        <Provider store={storeSocialNetwork}>
             <BrowserRouter>
                 <App/>
             </BrowserRouter>

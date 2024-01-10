@@ -1,6 +1,7 @@
 import React from 'react';
 import './App.css';
-import {AppRoot} from "./SocialNetwork/AppRoot";
+import {AppRoot} from "./ToDoList/AppRoot";
+
 
 export function App() {
     return (

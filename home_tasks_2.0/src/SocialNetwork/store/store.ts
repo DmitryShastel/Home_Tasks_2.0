@@ -10,4 +10,4 @@ export const rootReducer = combineReducers({
 })
 
 export type AppRootStateType = ReturnType<typeof rootReducer>
-export const store = createStore(rootReducer)
+export const storeSocialNetwork = createStore(rootReducer)

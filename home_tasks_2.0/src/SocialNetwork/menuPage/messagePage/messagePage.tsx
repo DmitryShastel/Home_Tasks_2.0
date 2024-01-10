@@ -29,7 +29,7 @@ export const MessagePage = () => {
     const addMessage = (messageTitle: string) => {
         dispatch(addMessageAC(messageTitle))
     }
-    
+
     return (
         <div className={messagePageStyle.container}>
             <div className={messagePageStyle.block}>{dialogsList}</div>
