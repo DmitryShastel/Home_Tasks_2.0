@@ -1,4 +1,4 @@
-import React, {ChangeEventHandler, useState} from 'react';
+import React, {useState} from 'react';
 
 
 type AddItemFormType = {
@@ -12,7 +12,6 @@ export const AddItemForm = (props: AddItemFormType) => {
     const addTitle = () => {
         props.callback(title)
         setTitle('')
-        console.log(title)
     }
 
 

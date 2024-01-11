@@ -1,24 +1,24 @@
 import React from 'react';
 import todolistStyle from './todolist.module.css'
 import {AddItemForm} from "./components/AddItemForm";
-import {TasksType, TaskType} from "./AppRoot";
+import {TaskType} from "./AppRoot";
 
 
 type ToDoListType = {
-    // tasks: TasksType
+    todolistId: string
+    tasks: TaskType[]
     title: string
-    // addTodolist: (titleTodolist: string) => void
+    addTask: (todolistId: string, taskTitle: string) => void
 }
 
 
 export const ToDoList = (props: ToDoListType) => {
 
-    const addTask = (titleTodolist: string) => {
-        // props.addTodolist(titleTodolist)
+    const addTask = (taskTitle: string) => {
+        props.addTask(props.todolistId, taskTitle)
     }
 
-    // let tasksForToDoList = props.tasks
-    // console.log(tasksForToDoList)
+    let tasksForToDoList = props.tasks
 
 
     return (
@@ -33,13 +33,20 @@ export const ToDoList = (props: ToDoListType) => {
             <div className={todolistStyle.list}>
 
                 {
-                    // props.tasks.map((task) => {
-                    //     return(
-                    //         <div>
-                    //             task= {task}
-                    //         </div>
-                    //     )
-                    // })
+                    tasksForToDoList && tasksForToDoList.map(task =>
+
+                        <div key={task.id}>
+                            <ul>
+                                <li>
+                                    <input type="checkbox" checked={task.isDone}/>
+                                    <span>{task.title}</span>
+                                    <button>X</button>
+                                </li>
+                            </ul>
+
+
+                        </div>
+                    )
                 }
             </div>
             <div className={todolistStyle.buttons}>
@@ -50,28 +57,3 @@ export const ToDoList = (props: ToDoListType) => {
         </div>
     );
 };
-
-{/*<ul>*/
-}
-{/*    <li>*/
-}
-{/*        <input type="checkbox"/>*/
-}
-{/*        <span>task 1</span>*/
-}
-{/*        <button>X</button>*/
-}
-{/*    </li>*/
-}
-{/*    <li>*/
-}
-{/*        <input type="checkbox"/>*/
-}
-{/*        <span>task 1</span>*/
-}
-{/*        <button>X</button>*/
-}
-{/*    </li>*/
-}
-{/*</ul>*/
-}

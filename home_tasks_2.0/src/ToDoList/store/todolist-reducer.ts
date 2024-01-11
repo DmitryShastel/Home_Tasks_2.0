@@ -14,7 +14,6 @@ export type ActionsType = AddTodolistActionType
 export const todolistReducer = (state: TodolistsType[] = InitialState, action: ActionsType): TodolistsType[] => {
     switch (action.type) {
         case 'ADD-TODOLIST' : {
-            debugger
             return [...state,
                 {id: v1(), title: action.titleTodolist, filter: 'all'}
             ]

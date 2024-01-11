@@ -6,6 +6,7 @@ import {addToDoListAC} from "./store/todolist-reducer";
 import {AppRootStateType} from "./store/storeToDoList";
 import {ToDoList} from "./ToDoList";
 import {debug} from "util";
+import {addTaskAC} from "./store/task-reducer";
 
 
 export type FilterType = 'all' | 'active' | 'completed'
@@ -38,6 +39,10 @@ export const AppRoot = () => {
         dispatch(addToDoListAC(titleTodolist))
     }
 
+    const addTask = (todolistId: string, taskTitle: string) => {
+        dispatch(addTaskAC(todolistId, taskTitle))
+    }
+
 
     return (
         <div className={appRootStyle.appContainer}>
@@ -45,12 +50,15 @@ export const AppRoot = () => {
             <div>
                 {
                     todolists.map((todolist) => {
+
+                        let taskForToDoList = tasks[todolist.id]
                         return (
-                            <><ToDoList
+                            <ToDoList
+                                todolistId={todolist.id}
                                 title={todolist.title}
-                                // tasks={tasks}
-                                // addTodolist={addTodolist}
-                            /> </>
+                                tasks={taskForToDoList}
+                                addTask={addTask}
+                            />
                         )
                     })
                 }
