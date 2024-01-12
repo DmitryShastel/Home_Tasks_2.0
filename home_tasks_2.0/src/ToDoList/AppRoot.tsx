@@ -5,7 +5,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {addToDoListAC, removeToDoListAC} from "./store/todolist-reducer";
 import {AppRootStateType} from "./store/storeToDoList";
 import {ToDoList} from "./ToDoList";
-import {addTaskAC} from "./store/task-reducer";
+import {addTaskAC, removeTaskAC} from "./store/task-reducer";
 
 
 export type FilterType = 'all' | 'active' | 'completed'
@@ -37,7 +37,6 @@ export const AppRoot = () => {
     const addTodolist = (titleTodolist: string) => {
         dispatch(addToDoListAC(titleTodolist))
     }
-
     const removeTodolist = (todolistId: string) => {
         dispatch(removeToDoListAC(todolistId))
     }
@@ -46,6 +45,9 @@ export const AppRoot = () => {
 //taskFuns
     const addTask = (todolistId: string, taskTitle: string) => {
         dispatch(addTaskAC(todolistId, taskTitle))
+    }
+    const removeTask = (todolistId: string, taskId: string) => {
+        dispatch(removeTaskAC(todolistId, taskId))
     }
 
 
@@ -64,6 +66,7 @@ export const AppRoot = () => {
                                 tasks={taskForToDoList}
                                 addTask={addTask}
                                 removeTodolist={removeTodolist}
+                                removeTask={removeTask}
                             />
                         )
                     })

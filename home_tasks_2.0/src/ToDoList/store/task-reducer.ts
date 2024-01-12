@@ -9,9 +9,15 @@ export type AddTaskActionType = {
     todolistId: string
     taskTitle: string
 }
+export type RemoveTaskACType = (todolistId: string, taskId: string) => RemoveTaskActionType
+export type RemoveTaskActionType = {
+    type: 'REMOVE-TASK',
+    todolistId: string
+    taskId: string
+}
 
 const InitialState: TasksType = {}
-export type ActionsType = AddTaskActionType
+export type ActionsType = AddTaskActionType | RemoveTaskActionType
 
 export const tasksReducer = (state: TasksType = InitialState, action: ActionsType): TasksType => {
     switch (action.type) {
@@ -20,8 +26,15 @@ export const tasksReducer = (state: TasksType = InitialState, action: ActionsTyp
             const newTask = {id: v1(), title: action.taskTitle, isDone: false};
             return {
                 ...state,
-                [action.todolistId]: [...tasks, newTask], // Добавляем новую задачу в конец массива задач для todolistId
+                [action.todolistId]: [...tasks, newTask],
             };
+        }
+        case 'REMOVE-TASK': {
+            const updatedTasks = state[action.todolistId].filter(task => task.id !== action.taskId)
+            return {
+                ...state,
+                [action.todolistId]: updatedTasks
+            }
         }
         default:
             return state
@@ -35,11 +48,14 @@ export const addTaskAC: AddTaskACType = (todolistId: string, taskTitle: string):
         taskTitle
     }
 }
-export const removeTaskAC = () => {
+export const removeTaskAC: RemoveTaskACType = (todolistId: string, taskId: string): RemoveTaskActionType => {
     return {
-        type: ''
+        type: 'REMOVE-TASK',
+        todolistId,
+        taskId
     }
 }
+
 export const changeTaskTitleAC = () => {
     return {
         type: ''

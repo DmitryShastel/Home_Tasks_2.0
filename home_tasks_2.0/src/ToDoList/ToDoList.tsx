@@ -10,6 +10,7 @@ type ToDoListType = {
     title: string
     addTask: (todolistId: string, taskTitle: string) => void
     removeTodolist: (todolistId: string) => void
+    removeTask: (todolistId: string, taskId: string) => void
 }
 
 
@@ -18,8 +19,11 @@ export const ToDoList = (props: ToDoListType) => {
     const addTask = (taskTitle: string) => {
         props.addTask(props.todolistId, taskTitle)
     }
-    const removeToDoListHandler = () => {
+    const removeToDoList = () => {
         props.removeTodolist(props.todolistId)
+    }
+    const removeTask = (taskId: string) => {
+        props.removeTask(props.todolistId, taskId)
         console.log('hello')
     }
 
@@ -31,7 +35,7 @@ export const ToDoList = (props: ToDoListType) => {
         <div className={todolistStyle.toDo}>
             <div className={todolistStyle.toDoTitle}>
                 <h4>{props.title}</h4>
-                <button onClick={removeToDoListHandler}>X</button>
+                <button onClick={removeToDoList}>X</button>
             </div>
             <div className={todolistStyle.toDoInput}>
                 <AddItemForm callback={addTask}/>
@@ -46,7 +50,7 @@ export const ToDoList = (props: ToDoListType) => {
                                 <li>
                                     <input type="checkbox" checked={task.isDone}/>
                                     <span>{task.title}</span>
-                                    <button>X</button>
+                                    <button onClick={() => removeTask(task.id)}>X</button>
                                 </li>
                             </ul>
 
