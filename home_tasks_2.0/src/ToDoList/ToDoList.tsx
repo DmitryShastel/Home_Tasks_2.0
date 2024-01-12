@@ -15,6 +15,7 @@ type ToDoListType = {
     removeTask: (todolistId: string, taskId: string) => void
     changeTaskStatus: (todolistId: string, taskId: string, isDone: boolean) => void
     changeToDoListTitle: (todolistId: string, titleTodolist: string) => void
+    changeTaskTitle: (todolistId: string, taskId: string, taskTitle: string) => void
 }
 
 
@@ -56,13 +57,16 @@ export const ToDoList = (props: ToDoListType) => {
                             props.changeTaskStatus(props.todolistId, task.id, checked)
                         }
 
+                        const changeTaskTitle = (newTitle: string) => {
+                            props.changeTaskTitle(props.todolistId, task.id, newTitle)
+                        }
+
                         return (
                             <div key={task.id}>
                                 <ul>
                                     <li>
                                         <SuperCheckBox isDone={task.isDone} callback={changeTaskStatus}/>
-                                        {/*<input type="checkbox" checked={task.isDone}/>*/}
-                                        <span>{task.title}</span>
+                                        <EditableSpan title={task.title} callback={changeTaskTitle}/>
                                         <button onClick={() => removeTask(task.id)}>X</button>
                                     </li>
                                 </ul>

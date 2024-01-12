@@ -5,7 +5,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {addToDoListAC, changeToDoListTitleAC, removeToDoListAC} from "./store/todolist-reducer";
 import {AppRootStateType} from "./store/storeToDoList";
 import {ToDoList} from "./ToDoList";
-import {addTaskAC, changeTaskStatusAC, removeTaskAC} from "./store/task-reducer";
+import {addTaskAC, changeTaskStatusAC, changeTaskTitleAC, removeTaskAC} from "./store/task-reducer";
 
 
 export type FilterType = 'all' | 'active' | 'completed'
@@ -56,7 +56,7 @@ export const AppRoot = () => {
         dispatch(changeTaskStatusAC(todolistId, taskId, isDone))
     }
     const changeTaskTitle = (todolistId: string, taskId: string, taskTitle: string) => {
-
+        dispatch(changeTaskTitleAC(todolistId, taskId, taskTitle))
     }
 
 
@@ -79,6 +79,7 @@ export const AppRoot = () => {
                                 removeTask={removeTask}
                                 changeTaskStatus={changeTaskStatus}
                                 changeToDoListTitle={changeToDoListTitle}
+                                changeTaskTitle={changeTaskTitle}
                             />
                         )
                     })

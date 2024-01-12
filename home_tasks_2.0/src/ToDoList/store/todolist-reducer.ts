@@ -59,7 +59,6 @@ export const removeToDoListAC: RemoveToDoListACType = (todolistId: string): Remo
         todolistId
     }
 }
-
 export const changeToDoListTitleAC: ChangeToDoListACType = (todolistId: string, titleTodolist: string): ChangeToDoListActionType => {
     return {
         type: 'CHANGE-TODOLIST-TITLE',
