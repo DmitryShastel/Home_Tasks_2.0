@@ -2,10 +2,10 @@ import React from 'react';
 import appRootStyle from './appRoot.module.css'
 import {AddItemForm} from "./components/AddItemForm";
 import {useDispatch, useSelector} from "react-redux";
-import {addToDoListAC, removeToDoListAC} from "./store/todolist-reducer";
+import {addToDoListAC, changeToDoListTitleAC, removeToDoListAC} from "./store/todolist-reducer";
 import {AppRootStateType} from "./store/storeToDoList";
 import {ToDoList} from "./ToDoList";
-import {addTaskAC, removeTaskAC} from "./store/task-reducer";
+import {addTaskAC, changeTaskStatusAC, removeTaskAC} from "./store/task-reducer";
 
 
 export type FilterType = 'all' | 'active' | 'completed'
@@ -40,6 +40,9 @@ export const AppRoot = () => {
     const removeTodolist = (todolistId: string) => {
         dispatch(removeToDoListAC(todolistId))
     }
+    const changeToDoListTitle = (todolistId: string, titleTodolist: string) => {
+        dispatch(changeToDoListTitleAC(todolistId, titleTodolist))
+    }
 
 
 //taskFuns
@@ -48,6 +51,12 @@ export const AppRoot = () => {
     }
     const removeTask = (todolistId: string, taskId: string) => {
         dispatch(removeTaskAC(todolistId, taskId))
+    }
+    const changeTaskStatus = (todolistId: string, taskId: string, isDone: boolean) => {
+        dispatch(changeTaskStatusAC(todolistId, taskId, isDone))
+    }
+    const changeTaskTitle = (todolistId: string, taskId: string, taskTitle: string) => {
+
     }
 
 
@@ -61,19 +70,20 @@ export const AppRoot = () => {
                         let taskForToDoList = tasks[todolist.id]
                         return (
                             <ToDoList
+                                key={todolist.id}
                                 todolistId={todolist.id}
-                                title={todolist.title}
+                                ToDoListTitle={todolist.title}
                                 tasks={taskForToDoList}
                                 addTask={addTask}
                                 removeTodolist={removeTodolist}
                                 removeTask={removeTask}
+                                changeTaskStatus={changeTaskStatus}
+                                changeToDoListTitle={changeToDoListTitle}
                             />
                         )
                     })
                 }
             </div>
-
-
         </div>
     );
 };

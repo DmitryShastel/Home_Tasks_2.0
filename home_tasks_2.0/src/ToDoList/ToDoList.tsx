@@ -2,15 +2,19 @@ import React from 'react';
 import todolistStyle from './todolist.module.css'
 import {AddItemForm} from "./components/AddItemForm";
 import {TaskType} from "./AppRoot";
+import {SuperCheckBox} from "./components/SuperCheckBox";
+import {EditableSpan} from "./components/EditableSpan";
 
 
 type ToDoListType = {
     todolistId: string
     tasks: TaskType[]
-    title: string
+    ToDoListTitle: string
     addTask: (todolistId: string, taskTitle: string) => void
     removeTodolist: (todolistId: string) => void
     removeTask: (todolistId: string, taskId: string) => void
+    changeTaskStatus: (todolistId: string, taskId: string, isDone: boolean) => void
+    changeToDoListTitle: (todolistId: string, titleTodolist: string) => void
 }
 
 
@@ -24,17 +28,19 @@ export const ToDoList = (props: ToDoListType) => {
     }
     const removeTask = (taskId: string) => {
         props.removeTask(props.todolistId, taskId)
-        console.log('hello')
     }
+    const onChangeToDoListTitle = (newTitle: string) => {
+        props.changeToDoListTitle(props.todolistId, newTitle)
+    }
+
 
     //for filters
     let tasksForToDoList = props.tasks
 
-
     return (
         <div className={todolistStyle.toDo}>
             <div className={todolistStyle.toDoTitle}>
-                <h4>{props.title}</h4>
+                <EditableSpan title={props.ToDoListTitle} callback={onChangeToDoListTitle}/>
                 <button onClick={removeToDoList}>X</button>
             </div>
             <div className={todolistStyle.toDoInput}>
@@ -43,20 +49,28 @@ export const ToDoList = (props: ToDoListType) => {
             <div className={todolistStyle.list}>
 
                 {
-                    tasksForToDoList && tasksForToDoList.map(task =>
-
-                        <div key={task.id}>
-                            <ul>
-                                <li>
-                                    <input type="checkbox" checked={task.isDone}/>
-                                    <span>{task.title}</span>
-                                    <button onClick={() => removeTask(task.id)}>X</button>
-                                </li>
-                            </ul>
+                    tasksForToDoList && tasksForToDoList.map((task) => {
 
 
-                        </div>
-                    )
+                        const changeTaskStatus = (checked: boolean) => {
+                            props.changeTaskStatus(props.todolistId, task.id, checked)
+                        }
+
+                        return (
+                            <div key={task.id}>
+                                <ul>
+                                    <li>
+                                        <SuperCheckBox isDone={task.isDone} callback={changeTaskStatus}/>
+                                        {/*<input type="checkbox" checked={task.isDone}/>*/}
+                                        <span>{task.title}</span>
+                                        <button onClick={() => removeTask(task.id)}>X</button>
+                                    </li>
+                                </ul>
+
+
+                            </div>
+                        )
+                    })
                 }
             </div>
             <div className={todolistStyle.buttons}>

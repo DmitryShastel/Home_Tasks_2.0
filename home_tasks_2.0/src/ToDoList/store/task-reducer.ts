@@ -16,8 +16,17 @@ export type RemoveTaskActionType = {
     taskId: string
 }
 
+export type ChangeTaskStatusACType = (todolistId: string, taskId: string, isDone: boolean) => ChangeTaskStatusActionType
+export type ChangeTaskStatusActionType = {
+    type: 'CHANGE-TASK-STATUS'
+    todolistId: string
+    taskId: string
+    isDone: boolean
+}
+
+
 const InitialState: TasksType = {}
-export type ActionsType = AddTaskActionType | RemoveTaskActionType
+export type ActionsType = AddTaskActionType | RemoveTaskActionType | ChangeTaskStatusActionType
 
 export const tasksReducer = (state: TasksType = InitialState, action: ActionsType): TasksType => {
     switch (action.type) {
@@ -36,6 +45,23 @@ export const tasksReducer = (state: TasksType = InitialState, action: ActionsTyp
                 [action.todolistId]: updatedTasks
             }
         }
+        case 'CHANGE-TASK-STATUS': {
+            const tasks = state[action.todolistId];
+            const updatedTasks = tasks.map(task => {
+                if (task.id === action.taskId) {
+                    return {
+                        ...task,
+                        isDone: action.isDone,
+                    };
+                }
+                return task;
+            });
+            return {
+                ...state,
+                [action.todolistId]: updatedTasks,
+            };
+        }
+
         default:
             return state
     }
@@ -55,13 +81,17 @@ export const removeTaskAC: RemoveTaskACType = (todolistId: string, taskId: strin
         taskId
     }
 }
-
-export const changeTaskTitleAC = () => {
+export const changeTaskStatusAC: ChangeTaskStatusACType = (todolistId: string, taskId: string, isDone: boolean): ChangeTaskStatusActionType => {
     return {
-        type: ''
+        type: 'CHANGE-TASK-STATUS',
+        todolistId,
+        taskId,
+        isDone
     }
 }
-export const changeTaskStatusAC = () => {
+
+
+export const changeTaskTitleAC = () => {
     return {
         type: ''
     }
