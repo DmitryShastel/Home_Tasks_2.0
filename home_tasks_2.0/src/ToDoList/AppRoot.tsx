@@ -2,10 +2,9 @@ import React from 'react';
 import appRootStyle from './appRoot.module.css'
 import {AddItemForm} from "./components/AddItemForm";
 import {useDispatch, useSelector} from "react-redux";
-import {addToDoListAC} from "./store/todolist-reducer";
+import {addToDoListAC, removeToDoListAC} from "./store/todolist-reducer";
 import {AppRootStateType} from "./store/storeToDoList";
 import {ToDoList} from "./ToDoList";
-import {debug} from "util";
 import {addTaskAC} from "./store/task-reducer";
 
 
@@ -34,11 +33,17 @@ export const AppRoot = () => {
     const todolists = useSelector<AppRootStateType, Array<TodolistsType>>(state => state.todolists)
     const tasks = useSelector<AppRootStateType, TasksType>(state => state.tasks)
 
-
+//todolistFuns
     const addTodolist = (titleTodolist: string) => {
         dispatch(addToDoListAC(titleTodolist))
     }
 
+    const removeTodolist = (todolistId: string) => {
+        dispatch(removeToDoListAC(todolistId))
+    }
+
+
+//taskFuns
     const addTask = (todolistId: string, taskTitle: string) => {
         dispatch(addTaskAC(todolistId, taskTitle))
     }
@@ -58,6 +63,7 @@ export const AppRoot = () => {
                                 title={todolist.title}
                                 tasks={taskForToDoList}
                                 addTask={addTask}
+                                removeTodolist={removeTodolist}
                             />
                         )
                     })

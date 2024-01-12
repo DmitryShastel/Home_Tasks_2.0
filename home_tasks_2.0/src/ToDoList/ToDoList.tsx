@@ -9,6 +9,7 @@ type ToDoListType = {
     tasks: TaskType[]
     title: string
     addTask: (todolistId: string, taskTitle: string) => void
+    removeTodolist: (todolistId: string) => void
 }
 
 
@@ -17,7 +18,12 @@ export const ToDoList = (props: ToDoListType) => {
     const addTask = (taskTitle: string) => {
         props.addTask(props.todolistId, taskTitle)
     }
+    const removeToDoListHandler = () => {
+        props.removeTodolist(props.todolistId)
+        console.log('hello')
+    }
 
+    //for filters
     let tasksForToDoList = props.tasks
 
 
@@ -25,7 +31,7 @@ export const ToDoList = (props: ToDoListType) => {
         <div className={todolistStyle.toDo}>
             <div className={todolistStyle.toDoTitle}>
                 <h4>{props.title}</h4>
-                <button>X</button>
+                <button onClick={removeToDoListHandler}>X</button>
             </div>
             <div className={todolistStyle.toDoInput}>
                 <AddItemForm callback={addTask}/>
