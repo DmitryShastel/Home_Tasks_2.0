@@ -1,0 +1,31 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+}
+
+.container input {
+    flex: 1;
+    outline: none;
+    border-radius: 5px;
+    border: 1px groove darkgrey;
+
+}
+
+.container button {
+    outline: none;
+    border-radius: 5px;
+    border: 1px groove darkgrey;
+}
+
+
+.styles input {
+    border: 1px groove red !important;
+    border-radius: 5px;
+}
+
+.styles {
+    font-family: Times, "Times New Roman", Georgia, serif;
+    color: red;
+}
+

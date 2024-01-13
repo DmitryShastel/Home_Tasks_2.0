@@ -1,4 +1,4 @@
-import React, {ChangeEvent, useState} from 'react';
+import React, {ChangeEvent} from 'react';
 
 type SuperCheckBoxType = {
     isDone: boolean
@@ -7,6 +7,8 @@ type SuperCheckBoxType = {
 
 
 export const SuperCheckBox = (props: SuperCheckBoxType) => {
+
+    console.log('SuperCheckBox')
 
     const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
         let newIsDoneValue = e.currentTarget.checked;

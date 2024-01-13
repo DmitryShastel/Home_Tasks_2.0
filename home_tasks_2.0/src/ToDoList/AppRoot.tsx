@@ -2,7 +2,7 @@ import React from 'react';
 import appRootStyle from './appRoot.module.css'
 import {AddItemForm} from "./components/AddItemForm";
 import {useDispatch, useSelector} from "react-redux";
-import {addToDoListAC, changeToDoListTitleAC, removeToDoListAC} from "./store/todolist-reducer";
+import {addToDoListAC, changeToDoListFilterAC, changeToDoListTitleAC, removeToDoListAC} from "./store/todolist-reducer";
 import {AppRootStateType} from "./store/storeToDoList";
 import {ToDoList} from "./ToDoList";
 import {addTaskAC, changeTaskStatusAC, changeTaskTitleAC, removeTaskAC} from "./store/task-reducer";
@@ -28,6 +28,7 @@ export type TasksType = {
 
 
 export const AppRoot = () => {
+    console.log('AppRoot')
 
     const dispatch = useDispatch()
     const todolists = useSelector<AppRootStateType, Array<TodolistsType>>(state => state.todolists)
@@ -42,6 +43,9 @@ export const AppRoot = () => {
     }
     const changeToDoListTitle = (todolistId: string, titleTodolist: string) => {
         dispatch(changeToDoListTitleAC(todolistId, titleTodolist))
+    }
+    const changeToDoListFilter = (todolistId: string, filter: FilterType) => {
+        dispatch(changeToDoListFilterAC(todolistId, filter))
     }
 
 
@@ -61,9 +65,13 @@ export const AppRoot = () => {
 
 
     return (
+
+
         <div className={appRootStyle.appContainer}>
-            <AddItemForm callback={addTodolist}/>
             <div>
+                <AddItemForm callback={addTodolist}/>
+            </div>
+            <div className={appRootStyle.todolists}>
                 {
                     todolists.map((todolist) => {
 
@@ -80,6 +88,8 @@ export const AppRoot = () => {
                                 changeTaskStatus={changeTaskStatus}
                                 changeToDoListTitle={changeToDoListTitle}
                                 changeTaskTitle={changeTaskTitle}
+                                filter={todolist.filter}
+                                changeToDoListFilter={changeToDoListFilter}
                             />
                         )
                     })

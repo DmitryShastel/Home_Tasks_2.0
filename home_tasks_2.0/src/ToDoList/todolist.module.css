@@ -2,16 +2,21 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    font-family: cursive;
 }
 
 .toDo {
-    margin-right: 5%;
+    margin: 0 2% 0 0;
 }
 
 .toDoTitle button {
     font-size: 10px;
     margin: 2% 0 0 5%;
     cursor: pointer;
+    outline: none;
+    border-radius: 5px;
+    border: 1px groove darkgrey;
+    padding: 3px 7px 3px 7px;
 }
 
 .toDoInput {
@@ -22,7 +27,6 @@
 
 .toDoInput input {
     width: 80%;
-    margin-right: 3%;
 }
 
 .list ul {
@@ -57,4 +61,13 @@
     flex-grow: 1;
     font-family: "Baskerville Old Face";
     cursor: pointer;
+    outline: none;
+    border-radius: 5px;
+    border: 1px groove darkgrey;
+    padding: 3px 7px 3px 7px;
+}
+
+.buttons button:focus {
+    border: 1px groove lightblue;
+    color: deepskyblue;
 }

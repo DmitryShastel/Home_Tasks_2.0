@@ -1,4 +1,4 @@
-import {TodolistsType} from "../AppRoot";
+import {FilterType, TodolistsType} from "../AppRoot";
 import {v1} from "uuid";
 
 export type AddToDoListACType = (titleTodolist: string) => AddTodolistActionType
@@ -17,9 +17,19 @@ export type ChangeToDoListActionType = {
     todolistId: string
     titleTodolist: string
 }
+export type ChangeToDoListFilterACType = (todolistId: string, filter: FilterType) => ChangeToDoListFilterActionType
+export type ChangeToDoListFilterActionType = {
+    type: 'CHANGE-TODOLIST-FILTER',
+    todolistId: string
+    filter: FilterType
+}
 
 const InitialState: TodolistsType[] = []
-export type ActionsType = AddTodolistActionType | RemoveToDoListActionType | ChangeToDoListActionType
+export type ActionsType =
+    AddTodolistActionType
+    | RemoveToDoListActionType
+    | ChangeToDoListActionType
+    | ChangeToDoListFilterActionType
 
 export const todolistReducer = (state: TodolistsType[] = InitialState, action: ActionsType): TodolistsType[] => {
     switch (action.type) {
@@ -37,6 +47,17 @@ export const todolistReducer = (state: TodolistsType[] = InitialState, action: A
                     return {
                         ...todolist,
                         title: action.titleTodolist,
+                    };
+                }
+                return todolist;
+            });
+        }
+        case 'CHANGE-TODOLIST-FILTER': {
+            return state.map(todolist => {
+                if (todolist.id === action.todolistId) {
+                    return {
+                        ...todolist,
+                        filter: action.filter,
                     };
                 }
                 return todolist;
@@ -66,9 +87,10 @@ export const changeToDoListTitleAC: ChangeToDoListACType = (todolistId: string, 
         titleTodolist
     }
 }
-
-export const changeToDoListFilterAC = () => {
+export const changeToDoListFilterAC: ChangeToDoListFilterACType = (todolistId: string, filter: FilterType): ChangeToDoListFilterActionType => {
     return {
-        type: ''
+        type: 'CHANGE-TODOLIST-FILTER',
+        todolistId,
+        filter
     }
 }
