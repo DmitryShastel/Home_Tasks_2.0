@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useCallback} from 'react';
 import todolistStyle from './todolist.module.css'
 import {AddItemForm} from "./components/AddItemForm";
 import {FilterType, TaskType} from "./AppRoot";
@@ -21,31 +21,31 @@ type ToDoListType = {
 }
 
 
-export const ToDoList = (props: ToDoListType) => {
+export const ToDoList = React.memo((props: ToDoListType) => {
     console.log('ToDoList')
 
-    const addTask = (taskTitle: string) => {
+    const addTask = useCallback((taskTitle: string) => {
         props.addTask(props.todolistId, taskTitle)
-    }
-    const removeToDoList = () => {
+    }, [props.todolistId])
+    const removeToDoList = useCallback(() => {
         props.removeTodolist(props.todolistId)
-    }
-    const removeTask = (taskId: string) => {
+    }, [props.todolistId])
+    const removeTask = useCallback((taskId: string) => {
         props.removeTask(props.todolistId, taskId)
-    }
-    const onChangeToDoListTitle = (newTitle: string) => {
-        props.changeToDoListTitle(props.todolistId, newTitle)
-    }
+    }, [props.todolistId])
 
-    const onAllHandlerFilter = () => {
+    const onChangeToDoListTitle = useCallback((newTitle: string) => {
+        props.changeToDoListTitle(props.todolistId, newTitle)
+    }, [props.todolistId])
+    const onAllHandlerFilter = useCallback(() => {
         props.changeToDoListFilter(props.todolistId, 'all')
-    }
-    const onActiveHandlerFilter = () => {
+    }, [props.todolistId])
+    const onActiveHandlerFilter = useCallback(() => {
         props.changeToDoListFilter(props.todolistId, 'active')
-    }
-    const onCompletedHandlerFilter = () => {
+    }, [props.todolistId])
+    const onCompletedHandlerFilter = useCallback(() => {
         props.changeToDoListFilter(props.todolistId, 'completed')
-    }
+    }, [])
 
 
     //for filters
@@ -98,4 +98,4 @@ export const ToDoList = (props: ToDoListType) => {
             </div>
         </div>
     );
-};
+});

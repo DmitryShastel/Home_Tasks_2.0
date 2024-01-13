@@ -6,7 +6,7 @@ type EditableSpanType = {
 }
 
 
-export const EditableSpan = (props: EditableSpanType) => {
+export const EditableSpan = React.memo((props: EditableSpanType) => {
 
     console.log('EditableSpan')
 
@@ -37,4 +37,4 @@ export const EditableSpan = (props: EditableSpanType) => {
             }
         </>
     );
-};
+}) ;

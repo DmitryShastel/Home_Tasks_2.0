@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useCallback} from 'react';
 import appRootStyle from './appRoot.module.css'
 import {AddItemForm} from "./components/AddItemForm";
 import {useDispatch, useSelector} from "react-redux";
@@ -27,7 +27,7 @@ export type TasksType = {
 }
 
 
-export const AppRoot = () => {
+export const AppRoot = React.memo(() => {
     console.log('AppRoot')
 
     const dispatch = useDispatch()
@@ -35,33 +35,32 @@ export const AppRoot = () => {
     const tasks = useSelector<AppRootStateType, TasksType>(state => state.tasks)
 
 //todolistFuns
-    const addTodolist = (titleTodolist: string) => {
+    const addTodolist = useCallback((titleTodolist: string) => {
         dispatch(addToDoListAC(titleTodolist))
-    }
-    const removeTodolist = (todolistId: string) => {
+    }, [])
+    const removeTodolist = useCallback((todolistId: string) => {
         dispatch(removeToDoListAC(todolistId))
-    }
-    const changeToDoListTitle = (todolistId: string, titleTodolist: string) => {
+    }, [])
+    const changeToDoListTitle = useCallback((todolistId: string, titleTodolist: string) => {
         dispatch(changeToDoListTitleAC(todolistId, titleTodolist))
-    }
-    const changeToDoListFilter = (todolistId: string, filter: FilterType) => {
+    }, [])
+    const changeToDoListFilter = useCallback((todolistId: string, filter: FilterType) => {
         dispatch(changeToDoListFilterAC(todolistId, filter))
-    }
-
+    }, [])
 
 //taskFuns
-    const addTask = (todolistId: string, taskTitle: string) => {
+    const addTask = useCallback((todolistId: string, taskTitle: string) => {
         dispatch(addTaskAC(todolistId, taskTitle))
-    }
-    const removeTask = (todolistId: string, taskId: string) => {
+    }, [])
+    const removeTask = useCallback((todolistId: string, taskId: string) => {
         dispatch(removeTaskAC(todolistId, taskId))
-    }
-    const changeTaskStatus = (todolistId: string, taskId: string, isDone: boolean) => {
+    }, [])
+    const changeTaskStatus = useCallback((todolistId: string, taskId: string, isDone: boolean) => {
         dispatch(changeTaskStatusAC(todolistId, taskId, isDone))
-    }
-    const changeTaskTitle = (todolistId: string, taskId: string, taskTitle: string) => {
+    }, [])
+    const changeTaskTitle = useCallback((todolistId: string, taskId: string, taskTitle: string) => {
         dispatch(changeTaskTitleAC(todolistId, taskId, taskTitle))
-    }
+    }, [])
 
 
     return (
@@ -97,4 +96,4 @@ export const AppRoot = () => {
             </div>
         </div>
     );
-};
+});

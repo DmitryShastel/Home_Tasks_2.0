@@ -6,7 +6,7 @@ type SuperCheckBoxType = {
 }
 
 
-export const SuperCheckBox = (props: SuperCheckBoxType) => {
+export const SuperCheckBox = React.memo((props: SuperCheckBoxType) => {
 
     console.log('SuperCheckBox')
 
@@ -21,4 +21,4 @@ export const SuperCheckBox = (props: SuperCheckBoxType) => {
             <input type="checkbox" checked={props.isDone} onChange={onChangeHandler}/>
         </div>
     );
-};
+});
