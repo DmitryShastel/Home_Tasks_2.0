@@ -1,13 +1,12 @@
 import React from 'react';
 import './App.css';
-import {AppRoot} from "./ToDoList/AppRoot";
+import {AppRootSN2_0} from "./SocialNetwork2.0/AppRoot2.0";
 
 
 export const App = React.memo(() => {
-    console.log('App')
     return (
         <div className="App">
-            <AppRoot/>
+            <AppRootSN2_0/>
         </div>
     );
 })
