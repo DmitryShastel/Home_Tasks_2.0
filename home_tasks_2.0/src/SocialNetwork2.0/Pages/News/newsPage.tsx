@@ -1,9 +1,9 @@
 import React from 'react';
 
-export const ProfilePage = () => {
+export const NewsPage = () => {
     return (
         <div>
-            Profile
+            News
         </div>
     );
 };

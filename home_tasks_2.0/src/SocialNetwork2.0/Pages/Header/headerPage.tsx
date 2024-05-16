@@ -18,10 +18,19 @@ import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import Divider from "@mui/material/Divider";
 import Drawer from "@mui/material/Drawer";
+import {Link as RouterLink, useLocation} from 'react-router-dom';
 
 
 export const TemporaryDrawer = () => {
     const [open, setOpen] = React.useState(false);
+    const location = useLocation();
+
+    const profileRoute = '/profile';
+    const messageRoute = '/message';
+    const newsRoute = '/news';
+    const usersRoute = '/users';
+    const musicRoute = '/music';
+    const settingsRoute = '/settings';
 
     const toggleDrawer = (newOpen: boolean) => () => {
         setOpen(newOpen);
@@ -31,15 +40,28 @@ export const TemporaryDrawer = () => {
         <Box sx={{width: 250}} role="presentation" onClick={toggleDrawer(false)}>
             <List>
                 {[
-                    {text: 'Profile', icon: <AccountCircleIcon/>},
-                    {text: 'Message', icon: <ChatIcon/>},
-                    {text: 'News', icon: <AnnouncementIcon/>},
-                    {text: 'Users', icon: <PeopleIcon/>},
-                    {text: 'Music', icon: <MusicNoteIcon/>},
-                    {text: 'Settings', icon: <SettingsIcon/>},
+                    {text: 'Profile', icon: <AccountCircleIcon/>, route: profileRoute},
+                    {text: 'Message', icon: <ChatIcon/>, route: messageRoute},
+                    {text: 'News', icon: <AnnouncementIcon/>, route: newsRoute},
+                    {text: 'Users', icon: <PeopleIcon/>, route: usersRoute},
+                    {text: 'Music', icon: <MusicNoteIcon/>, route: musicRoute},
+                    {text: 'Settings', icon: <SettingsIcon/>, route: settingsRoute},
                 ].map((item, index) => (
-                    <ListItem key={item.text} disablePadding>
-                        <ListItemButton>
+
+                    <ListItem
+                        key={item.text}
+                        disablePadding
+                        component={RouterLink}
+                        to={item.route || ''}
+                        sx={{
+                            color: location.pathname === item.route ? 'green' : 'grey',
+                            '&:hover': {
+                                backgroundColor: 'transparent',
+                            },
+                        }}
+                        className={location.pathname === item.route ? 'active' : ''}
+                    >
+                        <ListItemButton disableRipple>
                             <ListItemIcon>{item.icon}</ListItemIcon>
                             <ListItemText primary={item.text}/>
                         </ListItemButton>
