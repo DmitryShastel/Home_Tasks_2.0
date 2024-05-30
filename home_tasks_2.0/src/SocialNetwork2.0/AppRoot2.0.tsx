@@ -20,15 +20,15 @@ export const AppRootSN2_0 = () => {
             <MenuPage/>
 
             <Routes>
-                <Route path='/profile' element={<ProfilePage/>}></Route>
-                <Route path='/message' element={<MessagePage/>}></Route>
-                <Route path='/news' element={<NewsPage/>}></Route>
-                <Route path='/users' element={<UsersPage/>}></Route>
-                <Route path='/music' element={<MusicPage/>}></Route>
-                <Route path='/settings' element={<SettingsPage/>}></Route>
-                <Route path='/login' element={<LoginPage/>}></Route>
-                <Route path='/*' element={<NotFoundPage/>}></Route>
-                <Route path='/' element={<HomePage/>}></Route>
+                <Route path="/profile" element={<ProfilePage/>}/>
+                <Route path="/message" element={<MessagePage/>}/>
+                <Route path="/news" element={<NewsPage/>}/>
+                <Route path="/users" element={<UsersPage/>}/>
+                <Route path="/music" element={<MusicPage/>}/>
+                <Route path="/settings" element={<SettingsPage/>}/>
+                <Route path="/login" element={<LoginPage/>}/>
+                <Route path="/*" element={<NotFoundPage/>}/>
+                <Route path="/" element={<HomePage/>}/>
             </Routes>
         </>
     );

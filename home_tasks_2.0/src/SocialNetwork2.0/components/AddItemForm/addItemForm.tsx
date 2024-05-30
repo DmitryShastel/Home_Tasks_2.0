@@ -1,7 +1,6 @@
 import React, {ChangeEvent, useState} from 'react';
-import {createTheme, FormHelperText, TextField} from "@mui/material";
+import {FormHelperText, TextField} from "@mui/material";
 import {SuperButton} from "../SuperButon/superButton";
-import {ThemeProvider} from "@material-ui/styles";
 
 
 type AddItemFormPropsType = {
@@ -41,7 +40,7 @@ export const AddItemForm = (props: AddItemFormPropsType) => {
                     <TextField
                         value={value}
                         onChange={onChangeHandler}
-                        label="Outlined"
+                        label="Enter text"
                         variant="outlined"
                         style={{
                             marginRight: '1ch',

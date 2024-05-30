@@ -1,11 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import {App} from './App';
 import reportWebVitals from './reportWebVitals';
 import {BrowserRouter} from "react-router-dom";
 import {Provider} from "react-redux";
-import {storeToDoList} from "./ToDoList/store/storeToDoList";
+import {storeSocialNetwork2} from "./SocialNetwork2.0/store/store";
+import {AppRootSN2_0} from "./SocialNetwork2.0/AppRoot2.0";
 
 
 const root = ReactDOM.createRoot(
@@ -13,9 +13,9 @@ const root = ReactDOM.createRoot(
 );
 root.render(
     <React.StrictMode>
-        <Provider store={storeToDoList}>
+        <Provider store={storeSocialNetwork2}>
             <BrowserRouter>
-                <App/>
+                <AppRootSN2_0/>
             </BrowserRouter>
         </Provider>
 

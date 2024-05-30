@@ -4,7 +4,7 @@ import Box from "@mui/material/Box";
 
 export const MenuPage = () => {
     return (
-        <Box>
+        <Box sx={{ backgroundColor: 'red' }}>
             {/* Ваше содержимое */}
         </Box>
     )
