@@ -5,6 +5,7 @@ import {SuperButton} from "../SuperButon/superButton";
 
 type AddItemFormPropsType = {
     callback: (title: string) => void
+    title: string
 }
 
 
@@ -48,7 +49,7 @@ export const AddItemForm = (props: AddItemFormPropsType) => {
                             borderRadius: error ? '4px' : 'none'
                         }}
                     />
-                    <SuperButton callback={addItem} title={'Add message'}/>
+                    <SuperButton callback={addItem} title={props.title}/>
                 </div>
                 <div style={{
                     display: 'flex',

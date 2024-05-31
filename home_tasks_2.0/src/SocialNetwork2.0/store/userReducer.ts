@@ -95,7 +95,7 @@ export const isLoadingDataServerAC = (isLoading: boolean, usersId: number) => ({
     usersId
 } as const)
 
-
+//thunks
 export const setUsersTC = (currentPage: number, perPage: number) => (dispatch: Dispatch<UsersActionsType>) => {
     dispatch(IsFetchingAC(true))
     return userAPI.getUsers(currentPage, perPage).then(data => {

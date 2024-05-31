@@ -41,7 +41,7 @@ export const MessagePage = () => {
                     </List>
                 </Grid>
             </Grid>
-            <AddItemForm callback={addMessage}/>
+            <AddItemForm callback={addMessage} title={'Add message'}/>
         </div>
     );
 };
