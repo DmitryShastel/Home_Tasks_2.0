@@ -3,18 +3,6 @@ import {followAPI, userAPI} from "../api/api";
 
 export type InitialUsersStateType = typeof initialUsersState
 
-export type UserType = {
-    id: number
-    name: string
-    photos: { small: string, large: string }
-    status: string
-    followed: boolean
-    photoUrl: string
-    totalCount: number
-    currentPage: number
-    perPage: number
-}
-
 type UsersActionsType =
     | ReturnType<typeof setUsersAC>
     | ReturnType<typeof setTotalCountAC>
@@ -29,6 +17,18 @@ const FOLLOW_USER = 'FOLLOW-USER'
 const UNFOLLOW_USER = 'UNFOLLOW-USER'
 const ISFETCING = 'ISFETCING'
 const IS_LOADING_DATA_SERVER = 'IS-LOADING-DATA-SERVER'
+
+export type UserType = {
+    id: number
+    name: string
+    photos: { small: string, large: string }
+    status: string
+    followed: boolean
+    photoUrl: string
+    totalCount: number
+    currentPage: number
+    perPage: number
+}
 
 const initialUsersState = {
     users: [] as UserType[],
@@ -88,8 +88,8 @@ export const setUsersAC = (users: UserType[]) => ({type: SET_USERS, users} as co
 export const setTotalCountAC = (currentPage: number) => ({type: SET_TOTAL_COUNT, currentPage} as const)
 export const followUserAC = (userId: number) => ({type: FOLLOW_USER, userId} as const)
 export const UnfollowUserAC = (userId: number) => ({type: UNFOLLOW_USER, userId} as const)
-export const IsFetchingAC = (isFetching: boolean) => ({type: ISFETCING, isFetching} as const)
-export const isLoadingDataServerAC = (isLoading: boolean, usersId: number) => ({
+const IsFetchingAC = (isFetching: boolean) => ({type: ISFETCING, isFetching} as const)
+const isLoadingDataServerAC = (isLoading: boolean, usersId: number) => ({
     type: IS_LOADING_DATA_SERVER,
     isLoading,
     usersId

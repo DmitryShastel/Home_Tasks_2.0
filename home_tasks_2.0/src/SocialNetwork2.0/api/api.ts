@@ -1,5 +1,6 @@
 import axios from "axios";
 
+
 const axiosInstance = axios.create({
     withCredentials: true,
     baseURL: 'https://social-network.samuraijs.com/api/1.0/',
@@ -22,6 +23,21 @@ export const followAPI = {
     },
     unFollowUser(userId: number) {
         return axiosInstance.delete(`follow/${userId}`, {})
+            .then(res => res.data)
+    }
+}
+
+export const profileAPI = {
+    getUserProfile(userId: number) {
+        return axiosInstance.get(`profile/` + userId)
+            .then(res => res.data)
+    },
+    getUserStatus(userId: number) {
+        return axiosInstance.get(`profile/status/` + userId)
+            .then(res => res.data)
+    },
+    updateUserStatus(status: string) {
+        return axiosInstance.put(`/profile/status`, {status: status})
             .then(res => res.data)
     }
 }

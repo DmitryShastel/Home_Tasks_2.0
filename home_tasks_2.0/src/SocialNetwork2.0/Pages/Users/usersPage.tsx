@@ -7,6 +7,8 @@ import Typography from '@mui/material/Typography';
 import {AppRootStateType2} from "../../store/store";
 import {followUsersTC, InitialUsersStateType, setUsersTC, unFollowUsersTC, UserType} from "../../store/userReducer";
 import {CircularIndeterminate} from "../../components/Loader/loader";
+import {NavLink} from "react-router-dom";
+
 
 export const UsersPage = () => {
     const dispatch: ThunkDispatch<any, any, AnyAction> = useDispatch();
@@ -53,27 +55,28 @@ export const UsersPage = () => {
     const followHandler = (userId: number) => {
         return dispatch(followUsersTC(userId))
     }
-
     const unFollowHandler = (userId: number) => {
         return dispatch(unFollowUsersTC(userId))
     }
 
+
     return (
         <>
             {isFetching && <CircularIndeterminate/>}
-
             <List>
                 {users.users.map((user: UserType) => (
                     <ListItem key={user.id}>
                         <Grid container direction="column">
                             <Grid item>
-                                <Avatar
-                                    src={user.photos && user.photos.large ? user.photos.large : users.photoUrl}
-                                    style={{
-                                        width: '70px',
-                                        height: '70px',
-                                    }}
-                                />
+                                <NavLink to={`/profile/${user.id}`}>
+                                    <Avatar
+                                        src={user.photos && user.photos.large ? user.photos.large : users.photoUrl}
+                                        style={{
+                                            width: '70px',
+                                            height: '70px',
+                                        }}
+                                    />
+                                </NavLink>
                             </Grid>
                             <Grid item>
                                 <Typography variant="body1">{user.name}</Typography>

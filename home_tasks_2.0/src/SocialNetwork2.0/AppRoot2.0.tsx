@@ -20,6 +20,7 @@ export const AppRootSN2_0 = () => {
             <MenuPage/>
 
             <Routes>
+                <Route path="/profile/:userId" element={<ProfilePage/>}/>
                 <Route path="/profile" element={<ProfilePage/>}/>
                 <Route path="/message" element={<MessagePage/>}/>
                 <Route path="/news" element={<NewsPage/>}/>
