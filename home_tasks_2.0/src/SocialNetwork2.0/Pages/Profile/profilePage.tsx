@@ -16,13 +16,13 @@ import {
 import {CircularIndeterminate} from "../../components/Loader/loader";
 
 export const ProfilePage = () => {
-    const dispatch: ThunkDispatch<any, any, AnyAction> = useDispatch();
-    const posts = useSelector((state: AppRootStateType2) => state.posts.posts);
-    const userStatus = useSelector((state: AppRootStateType2) => state.posts.status);
-    const userProfile = useSelector((state: AppRootStateType2) => state.posts.profile) as UserProfileType | null;
-    const isFetching = useSelector((state: AppRootStateType2) => state.users.isFetching);
-    const [isEditing, setIsEditing] = useState(false);
-    const [editedStatus, setEditedStatus] = useState(userStatus);
+    const dispatch: ThunkDispatch<any, any, AnyAction> = useDispatch()
+    const posts = useSelector((state: AppRootStateType2) => state.posts.posts)
+    const userStatus = useSelector((state: AppRootStateType2) => state.posts.status)
+    const userProfile = useSelector((state: AppRootStateType2) => state.posts.profile) as UserProfileType | null
+    const isFetching = useSelector((state: AppRootStateType2) => state.users.isFetching)
+    const [isEditing, setIsEditing] = useState(false)
+    const [editedStatus, setEditedStatus] = useState(userStatus)
     const {userId} = useParams();
 
     useEffect(() => {
