@@ -14,6 +14,7 @@ import {
     UserProfileType,
 } from '../../store/profileReducer';
 import {CircularIndeterminate} from "../../components/Loader/loader";
+import {LoginPage} from "../Login/loginPage";
 
 export const ProfilePage = () => {
     const dispatch: ThunkDispatch<any, any, AnyAction> = useDispatch()
@@ -21,6 +22,7 @@ export const ProfilePage = () => {
     const userStatus = useSelector((state: AppRootStateType2) => state.posts.status)
     const userProfile = useSelector((state: AppRootStateType2) => state.posts.profile) as UserProfileType | null
     const isFetching = useSelector((state: AppRootStateType2) => state.users.isFetching)
+    const isAuth = useSelector((state: AppRootStateType2) => state.authMe.authMe)
     const [isEditing, setIsEditing] = useState(false)
     const [editedStatus, setEditedStatus] = useState(userStatus)
     const {userId} = useParams();
@@ -59,6 +61,9 @@ export const ProfilePage = () => {
         setIsEditing(false);
     };
 
+    if (!isAuth) {
+        return <LoginPage />;
+    }
 
     return (
         <>

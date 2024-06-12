@@ -8,6 +8,7 @@ import {AppRootStateType2} from "../../store/store";
 import {followUsersTC, InitialUsersStateType, setUsersTC, unFollowUsersTC, UserType} from "../../store/userReducer";
 import {CircularIndeterminate} from "../../components/Loader/loader";
 import {NavLink} from "react-router-dom";
+import {LoginPage} from "../Login/loginPage";
 
 
 export const UsersPage = () => {
@@ -17,6 +18,7 @@ export const UsersPage = () => {
     const perPage = useSelector((state: AppRootStateType2) => state.users.perPage);
     const isFetching = useSelector((state: AppRootStateType2) => state.users.isFetching);
     const isLoading = useSelector((state: AppRootStateType2) => state.users.isLoadingDataServer)
+    const isAuth = useSelector((state: AppRootStateType2) => state.authMe.authMe)
     const pagesCount = Math.ceil(totalCount / perPage);
     const [selectedPage, setSelectedPage] = useState(1);
 
@@ -59,51 +61,54 @@ export const UsersPage = () => {
         return dispatch(unFollowUsersTC(userId))
     }
 
+    if (!isAuth) {
+        return <LoginPage />;
+    }
 
     return (
         <>
             {isFetching && <CircularIndeterminate/>}
-            <List>
-                {users.users.map((user: UserType) => (
-                    <ListItem key={user.id}>
-                        <Grid container direction="column">
-                            <Grid item>
-                                <NavLink to={`/profile/${user.id}`}>
-                                    <Avatar
-                                        src={user.photos && user.photos.large ? user.photos.large : users.photoUrl}
-                                        style={{
-                                            width: '70px',
-                                            height: '70px',
-                                        }}
-                                    />
-                                </NavLink>
+           <List>
+                    {users.users.map((user: UserType) => (
+                        <ListItem key={user.id}>
+                            <Grid container direction="column">
+                                <Grid item>
+                                    <NavLink to={`/profile/${user.id}`}>
+                                        <Avatar
+                                            src={user.photos && user.photos.large ? user.photos.large : users.photoUrl}
+                                            style={{
+                                                width: '70px',
+                                                height: '70px',
+                                            }}
+                                        />
+                                    </NavLink>
+                                </Grid>
+                                <Grid item>
+                                    <Typography variant="body1">{user.name}</Typography>
+                                    <Typography variant="body1">Status: {user.status}</Typography>
+                                    {!user.followed ? (
+                                        <Button
+                                            disabled={isLoading.some(id => id === user.id)}
+                                            variant="contained"
+                                            color="primary"
+                                            onClick={() => followHandler(user.id)}>
+                                            Follow
+                                        </Button>
+                                    ) : (
+                                        <Button
+                                            disabled={isLoading.some(id => id === user.id)}
+                                            variant="contained"
+                                            color="primary"
+                                            onClick={() => unFollowHandler(user.id)}>
+                                            Unfollow
+                                        </Button>
+                                    )}
+                                </Grid>
                             </Grid>
-                            <Grid item>
-                                <Typography variant="body1">{user.name}</Typography>
-                                <Typography variant="body1">Status: {user.status}</Typography>
-                                {!user.followed ? (
-                                    <Button
-                                        disabled={isLoading.some(id => id === user.id)}
-                                        variant="contained"
-                                        color="primary"
-                                        onClick={() => followHandler(user.id)}>
-                                        Follow
-                                    </Button>
-                                ) : (
-                                    <Button
-                                        disabled={isLoading.some(id => id === user.id)}
-                                        variant="contained"
-                                        color="primary"
-                                        onClick={() => unFollowHandler(user.id)}>
-                                        Unfollow
-                                    </Button>
-                                )}
-                            </Grid>
-                        </Grid>
-                    </ListItem>
-                ))}
-            </List>
-            <BasicPagination/>
+                        </ListItem>
+                    ))}
+                </List>
+                <BasicPagination/>
         </>
-    );
+    )
 };

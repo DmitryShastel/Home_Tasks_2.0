@@ -9,13 +9,20 @@ const axiosInstance = axios.create({
     }
 })
 
+
+export const authAPI = {
+    authMe() {
+        return axiosInstance.get(`/auth/me`)
+            .then(res => res.data)
+    }
+}
+
 export const userAPI = {
     getUsers(currentPage: number, perPage: number) {
         return axiosInstance.get(`users?page=${currentPage}&count=${perPage}`)
             .then(res => res.data)
     }
 }
-
 export const followAPI = {
     followUser(userId: number) {
         return axiosInstance.post(`follow/${userId}`)
@@ -26,7 +33,6 @@ export const followAPI = {
             .then(res => res.data)
     }
 }
-
 export const profileAPI = {
     getUserProfile(userId: number) {
         return axiosInstance.get(`profile/` + userId)
@@ -41,3 +47,4 @@ export const profileAPI = {
             .then(res => res.data)
     }
 }
+

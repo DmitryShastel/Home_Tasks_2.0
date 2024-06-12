@@ -3,11 +3,13 @@ import {messageReducer2} from "./messageReducer";
 import {thunk} from "redux-thunk";
 import {userReducer2} from "./userReducer";
 import {profileReducer2} from "./profileReducer";
+import {authReducer} from "./authReducer";
 
 export const rootReducer2 = combineReducers({
     messages: messageReducer2,
     users: userReducer2,
-    posts: profileReducer2
+    posts: profileReducer2,
+    authMe: authReducer
 })
 
 
