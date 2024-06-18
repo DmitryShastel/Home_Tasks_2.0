@@ -5,7 +5,7 @@ import reportWebVitals from './reportWebVitals';
 import {BrowserRouter} from "react-router-dom";
 import {Provider} from "react-redux";
 import {storeSocialNetwork2} from "./SocialNetwork2.0/store/store";
-import {AppRootSN2_0} from "./SocialNetwork2.0/AppRoot2.0";
+import {AppTodolist2} from "./ToDolist2/AppTdolist2";
 
 
 const root = ReactDOM.createRoot(
@@ -15,7 +15,7 @@ root.render(
     <React.StrictMode>
         <Provider store={storeSocialNetwork2}>
             <BrowserRouter>
-                <AppRootSN2_0/>
+                <AppTodolist2/>
             </BrowserRouter>
         </Provider>
 
