@@ -1,7 +1,10 @@
+.container{
+    margin: 0 auto;
+    padding: 0;
+}
+
 .App {
     display: flex;
-    /*border: 1px solid blue;*/
-    /*height: 100%;*/
     width: 90%;
     margin: 5% ;
     flex-flow: row wrap;

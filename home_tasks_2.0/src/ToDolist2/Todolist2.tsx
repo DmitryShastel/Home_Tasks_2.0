@@ -17,7 +17,7 @@ export const Todolist2 = () => {
                 </div>
                 <div>
                     <input type='checkbox'/>
-                    <>Task</>
+                    <>TaskTask</>
                     <button>x</button>
                 </div>
                 <div>
@@ -27,7 +27,7 @@ export const Todolist2 = () => {
                 </div>
                 <div>
                     <input type='checkbox'/>
-                    <>Task</>
+                    <>TaskTaskTask</>
                     <button>x</button>
                 </div>
                 <div>
