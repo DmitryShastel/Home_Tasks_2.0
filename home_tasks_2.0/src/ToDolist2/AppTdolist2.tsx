@@ -10,9 +10,6 @@ export const AppTodolist2 = React.memo(() => {
             <Login/>
             <div className={app.App}>
                 <Todolist2/>
-                <Todolist2/>
-                <Todolist2/>
-                <Todolist2/>
             </div>
         </div>
     );

@@ -4,8 +4,8 @@ import './index.css';
 import reportWebVitals from './reportWebVitals';
 import {BrowserRouter} from "react-router-dom";
 import {Provider} from "react-redux";
-import {storeSocialNetwork2} from "./SocialNetwork2.0/store/store";
 import {AppTodolist2} from "./ToDolist2/AppTdolist2";
+import {storeTodolist2} from "./ToDolist2/store/storeToDoList2";
 
 
 const root = ReactDOM.createRoot(
@@ -13,7 +13,7 @@ const root = ReactDOM.createRoot(
 );
 root.render(
     <React.StrictMode>
-        <Provider store={storeSocialNetwork2}>
+        <Provider store={storeTodolist2}>
             <BrowserRouter>
                 <AppTodolist2/>
             </BrowserRouter>
