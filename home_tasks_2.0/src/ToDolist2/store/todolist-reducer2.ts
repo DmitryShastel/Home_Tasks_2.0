@@ -15,6 +15,34 @@ export type TodolistType = {
     title: string
 }
 
+export type ResponceType<D> = {
+    resultCode: number
+    messages: string[]
+    fieldsErrors: FieldErrorType[]
+    data: D
+}
+
+// export type CreateTodolistResponseType = {
+//     resultCode: number
+//     messages: string[]
+//     fieldsErrors: FieldErrorType[]
+//     data: {
+//         item: TodolistType
+//     }
+// }
+
+type FieldErrorType = {
+    error: string
+    field: string
+}
+
+// export type UpdateTodolistResponseType = {
+//     resultCode: number
+//     messages: string[]
+//     fieldsErrors: FieldErrorType[]
+//     data: {}
+// }
+
 const initialTodolistState = {
     totolist: [] as TodolistType[]
 }

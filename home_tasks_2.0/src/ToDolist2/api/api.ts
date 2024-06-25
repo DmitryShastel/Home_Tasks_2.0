@@ -1,4 +1,5 @@
 import axios from "axios";
+import {ResponceType, TodolistType} from "../store/todolist-reducer2";
 
 
 const axiosInstance = axios.create({
@@ -12,8 +13,21 @@ const axiosInstance = axios.create({
 
 export const todolistAPI = {
     getTodolist() {
-        return axiosInstance.get(`/todo-lists/`)
+        return axiosInstance.get<TodolistType[]>(`/todo-lists/`)
             .then(res => res.data)
-        // .then(res => console.log(res))
+        //.then(res => console.log(res))
+    },
+    addTodolist(title: string) {
+        return axiosInstance.post<ResponceType<{ item: TodolistType }>>(`/todo-lists/`, {title})
+            .then(res => res.data)
+    },
+    deleteTodolist(todolistId: string) {
+        return axiosInstance.delete<ResponceType<{}>>(`/todo-lists/${todolistId}`)
+            .then(res => res.data)
+    },
+    updateTodolist(todolistId: string, title: string) {
+        return axiosInstance.put<ResponceType<{}>>(`/todo-lists/${todolistId}`, {title: title})
+            .then(res => res.data)
     }
 }
+
