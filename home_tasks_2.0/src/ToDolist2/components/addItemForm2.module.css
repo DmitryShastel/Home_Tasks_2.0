@@ -1,0 +1,9 @@
+.addItemForm {
+    display: flex;
+    align-items: center;
+}
+
+.addItemForm button {
+    margin-left: 5px;
+}
+

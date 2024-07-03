@@ -15,13 +15,11 @@ export const todolistAPI = {
     getTodolist() {
         return axiosInstance.get<TodolistType[]>(`/todo-lists/`)
     },
-    addTodolist(title: string) {
-        return axiosInstance.post<ResponceType<{ item: TodolistType }>>(`/todo-lists/`, {title})
-            .then(res => res.data)
+    addTodolist(todolistTitle: string) {
+        return axiosInstance.post<ResponceType<{ item: TodolistType }>>(`todo-lists`, {title: todolistTitle})
     },
     deleteTodolist(todolistId: string) {
         return axiosInstance.delete<ResponceType>(`/todo-lists/${todolistId}`)
-            .then(res => res.data)
     },
     updateTodolist(todolistId: string, title: string) {
         return axiosInstance.put<ResponceType>(`/todo-lists/${todolistId}`, {title: title})

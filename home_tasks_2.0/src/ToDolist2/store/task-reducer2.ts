@@ -1,9 +1,11 @@
 import {Dispatch} from "redux";
 import {todolistAPI} from "../api/api";
+import {SetTodolistType} from "./todolist-reducer2";
 
 
 type TasksActionType =
     | ReturnType<typeof setTasksAC>
+    | SetTodolistType
 
 const SET_TASKS = 'SET-TASKS'
 
@@ -64,12 +66,12 @@ export const taskReducer2 = (state: TasksType = initialTasksState, action: Tasks
     switch (action.type) {
         case 'SET-TASKS':
             return {...state, [action.todolistId]: action.tasks};
-        // case 'SET-TODOLISTS':
-        //     const newState = {...state};
-        //     action.todolists.forEach(tl => {
-        //         newState[tl.id] = [];
-        //     });
-        //     return newState
+        case 'SET-TODOLISTS':
+            const newState = {...state};
+            action.todolists.forEach(tl => {
+                newState[tl.id] = [];
+            });
+            return newState
         default:
             return state
     }

@@ -4,7 +4,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {TodolistRootStateType} from "./store/storeToDoList2";
 import {ThunkDispatch} from "redux-thunk";
 import {AnyAction} from "redux";
-import {setTodolistTC} from "./store/todolist-reducer2";
+import {deleteTodolistTC, setTodolistTC} from "./store/todolist-reducer2";
 import {setTasksTC} from "./store/task-reducer2";
 
 
@@ -27,17 +27,21 @@ export const Todolist2 = () => {
     }, [todolists]);
 
 
-
-
     return (
         <>
             {
                 todolists.map((todolist) => {
+
+                    const deleteTodolist = () => {
+                        dispatch(deleteTodolistTC(todolist.id))
+                        console.log(`deleted: ${todolist.title}`)
+                    }
+
                     return (
                         <div className={todo.container}>
                             <div key={todolist.id} className={todo.title}>
                                 Title: {todolist.title}
-                                <button>x</button>
+                                <button onClick={deleteTodolist}>x</button>
                             </div>
                             <div className={todo.addItemForm}>
                                 <input/>
