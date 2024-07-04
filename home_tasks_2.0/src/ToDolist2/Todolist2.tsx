@@ -4,8 +4,10 @@ import {useDispatch, useSelector} from "react-redux";
 import {TodolistRootStateType} from "./store/storeToDoList2";
 import {ThunkDispatch} from "redux-thunk";
 import {AnyAction} from "redux";
-import {deleteTodolistTC, setTodolistTC} from "./store/todolist-reducer2";
+import {deleteTodolistTC, setTodolistTC, updateTodolistTC} from "./store/todolist-reducer2";
 import {setTasksTC} from "./store/task-reducer2";
+import {SuperButton2} from "./components/SuperButton2";
+import {EditableSpan2} from "./components/EditableSpan2";
 
 
 export const Todolist2 = () => {
@@ -37,11 +39,15 @@ export const Todolist2 = () => {
                         console.log(`deleted: ${todolist.title}`)
                     }
 
+                    const updateTodolist = (newTitle: string) => {
+                        dispatch(updateTodolistTC(todolist.id, newTitle))
+                    }
+
                     return (
                         <div className={todo.container}>
                             <div key={todolist.id} className={todo.title}>
-                                Title: {todolist.title}
-                                <button onClick={deleteTodolist}>x</button>
+                                <EditableSpan2 title={todolist.title} callback={updateTodolist}/>
+                                <SuperButton2 title={'x'} callback={deleteTodolist}/>
                             </div>
                             <div className={todo.addItemForm}>
                                 <input/>
@@ -52,14 +58,26 @@ export const Todolist2 = () => {
                                     <div key={task.id}>
                                         <input type='checkbox'/>
                                         {task.title}
-                                        <button>x</button>
+                                        <SuperButton2 title={'x'} callback={() => {
+                                        }}/>
                                     </div>
                                 ))}
                             </div>
                             <div className={todo.buttons}>
-                                <button>All</button>
-                                <button>Complete</button>
-                                <button>New</button>
+                                <SuperButton2
+                                    title={'All'}
+                                    callback={() => {
+                                    }}
+                                />
+                                <SuperButton2
+                                    title={'Complete'} callback={() => {
+                                }}
+                                />
+                                <SuperButton2
+                                    title={'New'}
+                                    callback={() => {
+                                    }}
+                                />
                             </div>
                         </div>
                     )

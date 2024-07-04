@@ -19,11 +19,10 @@ export const todolistAPI = {
         return axiosInstance.post<ResponceType<{ item: TodolistType }>>(`todo-lists`, {title: todolistTitle})
     },
     deleteTodolist(todolistId: string) {
-        return axiosInstance.delete<ResponceType>(`/todo-lists/${todolistId}`)
+        return axiosInstance.delete<ResponceType<{ item: TodolistType }>>(`/todo-lists/${todolistId}`)
     },
     updateTodolist(todolistId: string, title: string) {
-        return axiosInstance.put<ResponceType>(`/todo-lists/${todolistId}`, {title: title})
-            .then(res => res.data)
+        return axiosInstance.put<ResponceType<{ item: TodolistType }>>(`/todo-lists/${todolistId}/`, {title})
     },
     getTasks(todolistId: string) {
         return axiosInstance.get<any>(`/todo-lists/${todolistId}/tasks`)
