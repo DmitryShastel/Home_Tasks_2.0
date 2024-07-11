@@ -1,5 +1,6 @@
 import axios from "axios";
 import {ResponceType, TodolistType} from "../store/todolist-reducer2";
+import {TaskType} from "../store/task-reducer2";
 
 
 const axiosInstance = axios.create({
@@ -26,6 +27,9 @@ export const todolistAPI = {
     },
     getTasks(todolistId: string) {
         return axiosInstance.get<any>(`/todo-lists/${todolistId}/tasks`)
+    },
+    addTask(todolistId: string, title: string){
+        return axiosInstance.post<ResponceType<{ item: TaskType }>>(`/todo-lists/${todolistId}/tasks`, {title})
     }
 }
 

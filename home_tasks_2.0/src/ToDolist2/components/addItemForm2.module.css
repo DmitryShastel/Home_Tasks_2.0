@@ -1,9 +1,13 @@
 .addItemForm {
     display: flex;
+    /*display: inline-flex;*/
     align-items: center;
 }
 
 .addItemForm button {
-    margin-left: 5px;
+    margin-left: 15px;
+}
+.addItemForm input {
+    padding-left: 144px;
 }
 

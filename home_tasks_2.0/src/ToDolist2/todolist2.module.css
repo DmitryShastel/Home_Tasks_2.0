@@ -8,6 +8,7 @@
     align-content: stretch;
     min-height: 100%;
 }
+
 .title {
     display: flex;
     justify-content: space-between;
@@ -17,7 +18,8 @@
     aalign-self: flex-end;
 }
 
-.addItemForm button{
+.addItemForm button {
+    cursor: pointer;
     align-self: flex-start;
 }
 
@@ -27,6 +29,7 @@
 }
 
 .task {
+    cursor: pointer;
     flex-wrap: wrap;
     height: 200px;
     width: 347px;
@@ -38,10 +41,19 @@
 }
 
 .task button {
+    cursor: pointer;
     margin: 0 5% 5% 5%;
 }
 
 .buttons button {
+    cursor: pointer;
     width: 33.33%;
     margin-top: 5%;
 }
+
+
+.buttons button:active,
+.buttons button:focus {
+    background-color: greenyellow;
+}
+

@@ -3,6 +3,7 @@ import React from 'react';
 type SuperButton2PropsType = {
     title: string
     callback: () => void
+    className?: string
 }
 
 

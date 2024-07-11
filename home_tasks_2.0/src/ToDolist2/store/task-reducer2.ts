@@ -1,13 +1,15 @@
 import {Dispatch} from "redux";
 import {todolistAPI} from "../api/api";
-import {SetTodolistType} from "./todolist-reducer2";
+import {setTodolistType} from "./todolist-reducer2";
 
 
 type TasksActionType =
     | ReturnType<typeof setTasksAC>
-    | SetTodolistType
+    | setTodolistType
+    | ReturnType<typeof addTasksAC>
 
 const SET_TASKS = 'SET-TASKS'
+const ADD_TASKS = 'ADD-TASKS'
 
 
 export enum TaskStatuses {
@@ -72,16 +74,26 @@ export const taskReducer2 = (state: TasksType = initialTasksState, action: Tasks
                 newState[tl.id] = [];
             });
             return newState
+        case 'ADD-TASKS':
+            return {...state, [action.task.todoListId]: [action.task, ...state[action.task.todoListId]]}
         default:
             return state
     }
 }
 
 export const setTasksAC = (tasks: TaskType[], todolistId: string) => ({type: SET_TASKS, tasks, todolistId} as const);
+export const addTasksAC = (task: TaskType) => ({type: ADD_TASKS, task} as const);
 
 export const setTasksTC = (todolistId: string) => (dispatch: Dispatch<TasksActionType>) => {
     return todolistAPI.getTasks(todolistId)
         .then((res) => {
             dispatch(setTasksAC(res.data.items, todolistId))
+        })
+}
+
+export const addTaskTC = (todolistId: string, title: string) => (dispatch: Dispatch<TasksActionType>) => {
+    return todolistAPI.addTask(todolistId, title)
+        .then(res => {
+            dispatch(addTasksAC(res.data.data.item))
         })
 }
