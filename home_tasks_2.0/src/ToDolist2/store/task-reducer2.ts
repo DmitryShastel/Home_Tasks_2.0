@@ -7,9 +7,11 @@ type TasksActionType =
     | ReturnType<typeof setTasksAC>
     | setTodolistType
     | ReturnType<typeof addTasksAC>
+    | ReturnType<typeof removeTasksAC>
 
 const SET_TASKS = 'SET-TASKS'
-const ADD_TASKS = 'ADD-TASKS'
+const ADD_TASK = 'ADD-TASKS'
+const REMOVE_TASK = 'REMOVE-TASK'
 
 
 export enum TaskStatuses {
@@ -18,7 +20,6 @@ export enum TaskStatuses {
     Completed,
     Draft
 }
-
 export enum TaskPriorities {
     Low,
     Middle,
@@ -76,13 +77,19 @@ export const taskReducer2 = (state: TasksType = initialTasksState, action: Tasks
             return newState
         case 'ADD-TASKS':
             return {...state, [action.task.todoListId]: [action.task, ...state[action.task.todoListId]]}
+        case 'REMOVE-TASK':
+            return {...state, [action.todolistId]: state[action.todolistId].filter(t => t.id !== action.taskId) }
         default:
             return state
     }
 }
 
 export const setTasksAC = (tasks: TaskType[], todolistId: string) => ({type: SET_TASKS, tasks, todolistId} as const);
-export const addTasksAC = (task: TaskType) => ({type: ADD_TASKS, task} as const);
+export const addTasksAC = (task: TaskType) => ({type: ADD_TASK, task} as const);
+export const removeTasksAC = (todolistId: string, taskId: string) => ({type: REMOVE_TASK, todolistId, taskId} as const);
+
+
+
 
 export const setTasksTC = (todolistId: string) => (dispatch: Dispatch<TasksActionType>) => {
     return todolistAPI.getTasks(todolistId)
@@ -90,10 +97,16 @@ export const setTasksTC = (todolistId: string) => (dispatch: Dispatch<TasksActio
             dispatch(setTasksAC(res.data.items, todolistId))
         })
 }
-
 export const addTaskTC = (todolistId: string, title: string) => (dispatch: Dispatch<TasksActionType>) => {
     return todolistAPI.addTask(todolistId, title)
         .then(res => {
             dispatch(addTasksAC(res.data.data.item))
         })
+}
+
+export const removeTaskTC = (todolistId: string, taskId: string) => (dispatch: Dispatch<TasksActionType>) => {
+return todolistAPI.removeTask(todolistId, taskId)
+    .then(res => {
+        dispatch(removeTasksAC(todolistId, taskId))
+    })
 }

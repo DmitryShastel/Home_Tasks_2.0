@@ -5,7 +5,7 @@ import {TodolistRootStateType} from "./store/storeToDoList2";
 import {ThunkDispatch} from "redux-thunk";
 import {AnyAction} from "redux";
 import {deleteTodolistTC, filterTodolistAC, setTodolistTC, updateTodolistTC} from "./store/todolist-reducer2";
-import {addTaskTC, setTasksTC} from "./store/task-reducer2";
+import {addTaskTC, removeTasksAC, removeTaskTC, setTasksTC} from "./store/task-reducer2";
 import {SuperButton2} from "./components/SuperButton2";
 import {EditableSpan2} from "./components/EditableSpan2";
 import {AddItemForm2} from "./components/AddItemForm2";
@@ -31,6 +31,10 @@ export const Todolist2 = () => {
             dispatch(setTasksTC(todolistId));
         });
     }, [todolists]);
+
+    const removeTask = (todolistId: string, taskId: string) => {
+        dispatch(removeTaskTC(todolistId, taskId))
+    }
 
 
     return (
@@ -65,8 +69,7 @@ export const Todolist2 = () => {
                                     <div key={task.id}>
                                         <input type='checkbox'/>
                                         {task.title}
-                                        <SuperButton2 title={'x'} callback={() => {
-                                        }}/>
+                                        <SuperButton2 title={'x'} callback={() => removeTask(todolist.id, task.id)}/>
                                     </div>
                                 ))}
                             </div>
