@@ -11,6 +11,41 @@ const axiosInstance = axios.create({
     }
 })
 
+export enum TaskStatuses {
+    New,
+    InProgress,
+    Completed,
+    Draft
+}
+
+export enum TaskPriorities {
+    Low,
+    Middle,
+    Hi,
+    Urgently,
+    Later
+}
+
+export type modelType = {
+    title: string
+    description: string
+    completed: boolean
+    status: TaskStatuses
+    priority: TaskPriorities
+    // status: number
+    // priority: number
+    startDate: string
+    deadline: string
+}
+
+export type UpdateTaskModelType = {
+    title: string
+    description: string
+    status: TaskStatuses
+    priority: TaskPriorities
+    startDate: string
+    deadline: string
+}
 
 export const todolistAPI = {
     getTodolist() {
@@ -33,6 +68,9 @@ export const todolistAPI = {
     },
     removeTask(todolistId: string, taskId: string) {
         return axiosInstance.delete(`/todo-lists/${todolistId}/tasks/${taskId}`)
+    },
+    updateTask(todolistId: string, taskId: string, model: UpdateTaskModelType) {
+        return axiosInstance.put<any>(`/todo-lists/${todolistId}/tasks/${taskId}`, model)
     }
 }
 

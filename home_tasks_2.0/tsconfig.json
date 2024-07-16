@@ -6,6 +6,10 @@
       "dom.iterable",
       "esnext"
     ],
+    //path it is for exams
+    "paths": {
+      "@reduxjs/toolkit": ["node_modules/@reduxjs/toolkit/dist/redux-toolkit.js"]
+    },
     "allowJs": true,
     "skipLibCheck": true,
     "esModuleInterop": true,
