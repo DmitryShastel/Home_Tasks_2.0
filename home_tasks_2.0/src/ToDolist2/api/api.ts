@@ -47,6 +47,13 @@ export type UpdateTaskModelType = {
     deadline: string
 }
 
+export type LoginDataType = {
+    email: string
+    password: string
+    rememberMe: boolean
+    captcha?: string
+}
+
 export const todolistAPI = {
     getTodolist() {
         return axiosInstance.get<TodolistType[]>(`/todo-lists/`)
@@ -71,6 +78,15 @@ export const todolistAPI = {
     },
     updateTask(todolistId: string, taskId: string, model: UpdateTaskModelType) {
         return axiosInstance.put<any>(`/todo-lists/${todolistId}/tasks/${taskId}`, model)
+    },
+    getAuth() {
+        return axiosInstance.get(`/auth/me`)
+    },
+    loginAuth(data: LoginDataType) {
+        return axiosInstance.post<ResponceType<{ userId: string }>>(`/auth/login`, data)
+    },
+    logUotAuth() {
+        return axiosInstance.delete(`/auth/login`)
     }
 }
 

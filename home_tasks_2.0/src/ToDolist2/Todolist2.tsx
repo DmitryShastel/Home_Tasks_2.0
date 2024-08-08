@@ -4,18 +4,18 @@ import {useDispatch, useSelector} from "react-redux";
 import {TodolistRootStateType} from "./store/storeToDoList2";
 import {ThunkDispatch} from "redux-thunk";
 import {AnyAction} from "redux";
-import {deleteTodolistTC, filterTodolistAC, setTodolistTC, updateTodolistTC} from "./store/todolist-reducer2";
 import {
-    addTaskTC,
-    removeTaskTC,
-    setTasksTC,
-    TaskStatuses,
-    UpdateTaskModelType,
-    updateTaskTC
-} from "./store/task-reducer2";
+    addTodolistTC,
+    deleteTodolistTC,
+    filterTodolistAC,
+    setTodolistTC,
+    updateTodolistTC
+} from "./store/todolist-reducer2";
+import {addTaskTC, removeTaskTC, setTasksTC, TaskStatuses, updateTaskTC} from "./store/task-reducer2";
 import {SuperButton2} from "./components/SuperButton2";
 import {EditableSpan2} from "./components/EditableSpan2";
 import {AddItemForm2} from "./components/AddItemForm2";
+import {Navigate} from "react-router-dom";
 
 
 export const Todolist2 = () => {
@@ -24,14 +24,12 @@ export const Todolist2 = () => {
     const todolists = useSelector((state: TodolistRootStateType) => state.todolists);
     const tasks = useSelector((state: TodolistRootStateType) => state.tasks);
     const filter = useSelector((state: TodolistRootStateType) => state.todolists.find(t => t.filter));
-
+    const isAuth = useSelector((state: TodolistRootStateType) => state.auth.isAuthMe)
     console.log(filter)
-
 
     useEffect(() => {
         dispatch(setTodolistTC());
     }, []);
-
     useEffect(() => {
         const todolistIds = todolists.map((todolist) => todolist.id);
         todolistIds.forEach((todolistId) => {
@@ -39,26 +37,34 @@ export const Todolist2 = () => {
         });
     }, [todolists]);
 
+    const addItem = (todolistTitle: string) => {
+        dispatch(addTodolistTC(todolistTitle))
+    }
     const removeTask = (todolistId: string, taskId: string) => {
         dispatch(removeTaskTC(todolistId, taskId))
     }
-
     const updateTaskTitle = (todolistId: string, taskId: string, taskTitle: string) => {
         dispatch(updateTaskTC(todolistId, taskId, {title: taskTitle}))
     }
-
     const changeTaskStatus = (todolistId: string, taskId: string, status: TaskStatuses) => {
         dispatch(updateTaskTC(todolistId, taskId, {status}))
     }
-
     const onChangeTaskStatusHandler = (e: ChangeEvent<HTMLInputElement>, todolistId: string, taskId: string) => {
         let newIsDoneValue = e.currentTarget.checked;
         changeTaskStatus(todolistId, taskId, newIsDoneValue ? TaskStatuses.Completed : TaskStatuses.New)
     }
 
+    if (!isAuth) {
+        return <Navigate to={'/login'}/>
+    }
+
 
     return (
         <>
+            <>
+                <AddItemForm2 callback={addItem}/>
+            </>
+
             {
                 todolists.map((todolist) => {
 
@@ -90,8 +96,8 @@ export const Todolist2 = () => {
 
                                         <div key={task.id}>
                                             <input type='checkbox'
-                                                checked={task.status === TaskStatuses.Completed ? true : false}
-                                                onChange={(e: ChangeEvent<HTMLInputElement>) => onChangeTaskStatusHandler(e, todolist.id, task.id)}
+                                                   checked={task.status === TaskStatuses.Completed ? true : false}
+                                                   onChange={(e: ChangeEvent<HTMLInputElement>) => onChangeTaskStatusHandler(e, todolist.id, task.id)}
                                             />
                                             <EditableSpan2 title={task.title}
                                                            callback={(taskTitle) => updateTaskTitle(todolist.id, task.id, taskTitle)}/>

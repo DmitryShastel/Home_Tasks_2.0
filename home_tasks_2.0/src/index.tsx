@@ -3,9 +3,8 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
 import {BrowserRouter} from "react-router-dom";
+import {App, store} from "./ToDolist2/AppTdolist2";
 import {Provider} from "react-redux";
-import {storeTodolist2} from "./ToDolist2/store/storeToDoList2";
-import {AppTodolist2} from "./ToDolist2/AppTdolist2";
 
 
 const root = ReactDOM.createRoot(
@@ -13,12 +12,11 @@ const root = ReactDOM.createRoot(
 );
 root.render(
     <React.StrictMode>
-        <Provider store={storeTodolist2}>
+        <Provider store={store}>
             <BrowserRouter>
-                <AppTodolist2/>
+                <App/>
             </BrowserRouter>
         </Provider>
-
     </React.StrictMode>
 );
 
