@@ -1,0 +1,16 @@
+.list ul {
+    list-style-type: none;
+    font-size: large;
+    font-family: "Franklin Gothic Medium";
+    color: rgb(29, 128, 140);
+}
+
+.buttons {
+    display: flex;
+    margin: 0 0 20px 40px;
+}
+
+.button {
+    margin-right: 15px;
+}
+

@@ -1,0 +1,20 @@
+.buttonContainer {
+    display: flex;
+    margin: 20px 0 0 40px;
+}
+
+.buttonWrapper{
+    margin-right: 10px;
+}
+
+.info ul {
+    list-style-type: none;
+    font-size: large;
+    font-family: "Franklin Gothic Medium";
+}
+
+.info li {
+    padding-bottom: 15px;
+    text-decoration: none;
+    color: rgb(29, 128, 140);
+}

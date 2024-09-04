@@ -3,20 +3,23 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
 import {BrowserRouter} from "react-router-dom";
-import {App, store} from "./ToDolist2/AppTdolist2";
+import {AppReduxToolkit} from "./Redux-toolkit/App-redux-toolkit";
+import {setupStore} from "./Redux-toolkit/store/store";
 import {Provider} from "react-redux";
 
+
+const store = setupStore()
 
 const root = ReactDOM.createRoot(
     document.getElementById('root') as HTMLElement
 );
 root.render(
     <React.StrictMode>
-        <Provider store={store}>
-            <BrowserRouter>
-                <App/>
-            </BrowserRouter>
-        </Provider>
+        <BrowserRouter>
+            <Provider store={store}>
+                <AppReduxToolkit/>
+            </Provider>
+        </BrowserRouter>
     </React.StrictMode>
 );
 

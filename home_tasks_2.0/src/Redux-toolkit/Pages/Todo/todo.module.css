@@ -1,0 +1,14 @@
+.list ul{
+    list-style-type: none;
+    font-size: large;
+    font-family: "Franklin Gothic Medium";
+}
+
+.list li{
+    text-decoration: none;
+    color: rgb(29, 128, 140);
+}
+
+.button {
+    margin: 0 0 20px 40px;
+}
