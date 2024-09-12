@@ -3,12 +3,12 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
 import {BrowserRouter} from "react-router-dom";
-import {AppReduxToolkit} from "./Redux-toolkit/App-redux-toolkit";
-import {setupStore} from "./Redux-toolkit/store/store";
 import {Provider} from "react-redux";
+import {App} from "./DopThursdayFlashcards/app/App";
+import {store} from "./DopThursdayFlashcards/app/store";
 
 
-const store = setupStore()
+// const store = setupStore()
 
 const root = ReactDOM.createRoot(
     document.getElementById('root') as HTMLElement
@@ -17,7 +17,7 @@ root.render(
     <React.StrictMode>
         <BrowserRouter>
             <Provider store={store}>
-                <AppReduxToolkit/>
+                <App/>
             </Provider>
         </BrowserRouter>
     </React.StrictMode>

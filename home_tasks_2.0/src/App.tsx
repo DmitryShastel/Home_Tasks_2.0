@@ -1,11 +1,11 @@
  import React from 'react';
-// import './App.css';
+// import './AppDop.css';
 // import {AppRootSN2_0} from "./SocialNetwork2.0/AppRoot2.0";
 //
 //
-// export const App = React.memo(() => {
+// export const AppDop = React.memo(() => {
 //     return (
-//         <div className="App">
+//         <div className="AppDop">
 //             <AppRootSN2_0/>
 //         </div>
 //     );

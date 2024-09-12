@@ -6,8 +6,8 @@ export {}
 // import {AnyAction} from 'redux';
 // import {Avatar, Button, Grid, List, ListItem, ListItemText, Pagination} from '@mui/material';
 // import Typography from '@mui/material/Typography';
-// import {AppRootStateType2} from "../store/store";
-// import {InitialUsersStateType, setUsersTC, UserType} from "../store/userReducer";
+// import {AppRootStateType2} from "../storeDop/storeDop";
+// import {InitialUsersStateType, setUsersTC, UserType} from "../storeDop/userReducer";
 //
 // export const UsersPage = () => {
 //     const dispatch: ThunkDispatch<any, any, AnyAction> = useDispatch();
