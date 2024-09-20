@@ -4,11 +4,13 @@ import {TypedUseSelectorHook, useDispatch, useSelector} from 'react-redux'
 import {decksReducer} from '../features/decks/decks-reducer'
 
 const rootReducer = combineReducers({
-  decksReducer,
+  desks: decksReducer,
 })
 
-
+//@ts-ignore
 export const store = createStore(rootReducer, applyMiddleware(thunk));
+
+
 
 export type AppRootState = ReturnType<typeof rootReducer>
 
@@ -20,5 +22,5 @@ export const useAppSelector: TypedUseSelectorHook<AppRootState> = useSelector
 
 
 //old store
-//@ts-ignore
+
 // export const store = legacy_createStore(rootReducer, applyMiddleware(thunkMiddleware))
