@@ -12,7 +12,6 @@ type Author = {
     id: string
     name: string
 }
-
 export type Deck = {
     author: Author
     cardsCount: number
@@ -25,22 +24,35 @@ export type Deck = {
     isFavorite: boolean
     isPrivate: boolean
 }
-
 type Pagination = {
     currentPage: number
     itemsPerPage: number
     totalPages: number
     totalItems: number
 }
-
-type FetchDecksResponce = {
+type FetchDecksResponse = {
     items: Deck[]
     maxCardsCount: number
     pagination: Pagination
 }
 
+
+
+
 export const decksApi = {
     fetchDecks() {
-        return instance.get<FetchDecksResponce>(`decks`)
+        return instance.get<FetchDecksResponse>(`decks`)
+    },
+    addDeck(name: string) {
+        return instance.post<Deck>(`decks`, {name})
+    },
+    updateDeck(id: string, name: string) {
+        console.log(`Updating deck with id ${id} and name ${name}`);
+        return instance.patch<any>(`decks/${id}`, {id, name})
+    },
+    deleteDeck(id: string){
+        return instance.delete<Deck>(`decks/${id}`)
     }
 }
+
+
