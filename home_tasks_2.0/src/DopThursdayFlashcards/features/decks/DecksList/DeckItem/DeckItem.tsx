@@ -1,29 +1,37 @@
 import s from './DeckItem.module.css'
 import {Deck} from "../../decks-api";
 import {useAppDispatch} from "../../../../app/store";
-import {UpdateDeckTC} from "../../decks-thunks";
-import {deleteDecksAC} from "../../decks-reducer";
+import {useState} from "react";
+import {deleteDeckTC, updateDeckTC} from "../../decks-thunks";
 
 type DeckProps = {
-    //deck: any // todo: fix
     deck: Deck
 }
 
-const TEST_ACC_NAME = 'kukus'
+
+//добавляем значение Author: в переменную с фронта из колоды, что бы менять/удалять колоды только из своего аккаунта
+const TEST_ACC_NAME = 'Nik-Kik-Shpink'
 
 export const DeckItem = ({deck}: DeckProps) => {
     const isTestingDeck = deck.author.name === TEST_ACC_NAME
 
     const dispatch = useAppDispatch()
 
+    const [isLoading, setIsLoading] = useState(false)
+
     const updateHandler = () => {
-        console.log(deck.id, deck.name)
-        dispatch(UpdateDeckTC(deck.id, deck.name))
+        setIsLoading(true)
+        dispatch(updateDeckTC({id: deck.id, name: `${deck.name} updated`})).finally(() => {
+            setIsLoading(false)
+        })
     }
 
 
     const deleteHandler = () => {
-        dispatch(deleteDecksAC(deck.id))
+        setIsLoading(true)
+        dispatch(deleteDeckTC(deck.id)).finally(() => {
+            setIsLoading(false)
+        })
     }
 
     return (
@@ -41,18 +49,18 @@ export const DeckItem = ({deck}: DeckProps) => {
             <p className={s.characteristic}>
                 <b>Updated:</b> {new Date(deck.updated).toLocaleString('ru-Ru')}
             </p>
-
-            {(
-                <div className={s.buttonBox}>
-                    <button>update</button>
-                    <button>delete</button>
-                </div>
-            )}
-
             {isTestingDeck && (
                 <div className={s.buttonBox}>
-                    <button onClick={updateHandler}>update</button>
-                    <button onClick={() => deleteHandler()}>delete</button>
+                    <button
+                        disabled={isLoading}
+                        onClick={updateHandler}>
+                        update
+                    </button>
+                    <button
+                        disabled={isLoading}
+                        onClick={() => deleteHandler()}>
+                        delete
+                    </button>
                 </div>
             )}
         </li>

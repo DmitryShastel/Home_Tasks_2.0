@@ -1,4 +1,4 @@
-import {Deck} from "./decks-api";
+import {Deck, UpdateDeckParams} from "./decks-api";
 
 const initialState = {
     //decks: [] as any[], // todo: add type
@@ -31,7 +31,7 @@ export const decksReducer = (state: DecksState = initialState, action: DecksActi
         case 'UPDATE-DECK':
             return {
                 ...state,
-                decks: state.decks.map(d => d.id === action.id ? {...d, name: action.name} : d)
+                decks: state.decks.map(d => d.id === action.params.id ? {...d, name: action.params.name} : d)
             }
         case 'DELETE-DECK':
             return {
@@ -46,5 +46,5 @@ export const decksReducer = (state: DecksState = initialState, action: DecksActi
 
 export const setDecksAC = (decks: Deck[]) => ({type: SET_DECKS, decks} as const)
 export const createDecksAC = (deck: Deck) => ({type: CREATE_DECK, deck} as const)
-export const updateDecksAC = (id: string, name: string) => ({type: UPDATE_DECK, id, name} as const)
+export const updateDecksAC = (params: UpdateDeckParams) => ({type: UPDATE_DECK, params} as const)
 export const deleteDecksAC = (id: string) => ({type: DELETE_DECK, id} as const)

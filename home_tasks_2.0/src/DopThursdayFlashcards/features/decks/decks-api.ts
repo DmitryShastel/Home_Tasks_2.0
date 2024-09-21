@@ -35,6 +35,10 @@ type FetchDecksResponse = {
     maxCardsCount: number
     pagination: Pagination
 }
+export type UpdateDeckParams = {
+    id: string
+    name: string
+}
 
 
 
@@ -46,9 +50,9 @@ export const decksApi = {
     addDeck(name: string) {
         return instance.post<Deck>(`decks`, {name})
     },
-    updateDeck(id: string, name: string) {
+    updateDeck({id, name}: UpdateDeckParams) {
         console.log(`Updating deck with id ${id} and name ${name}`);
-        return instance.patch<any>(`decks/${id}`, {id, name})
+        return instance.patch<Deck>(`decks/${id}`, {name})
     },
     deleteDeck(id: string){
         return instance.delete<Deck>(`decks/${id}`)
