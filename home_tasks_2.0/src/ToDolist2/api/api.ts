@@ -89,4 +89,3 @@ export const todolistAPI = {
         return axiosInstance.delete(`/auth/login`)
     }
 }
-

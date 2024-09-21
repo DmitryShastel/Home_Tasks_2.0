@@ -3,6 +3,8 @@ import {decksApi, UpdateDeckParams} from "./decks-api";
 import {deleteDecksAC, setDecksAC, updateDecksAC} from "./decks-reducer";
 import {AppDispatch} from "../../app/store";
 import {setAppStatusAC} from "../../app/app-reducer";
+import {handleError} from "../../Common/utils/handle-error";
+
 
 export const FetchDecksTC = () => async (dispatch: Dispatch) => {
     dispatch(setAppStatusAC('loading'))
@@ -22,9 +24,12 @@ export const AddDeckTC = (name: string) => (dispatch: AppDispatch) => {
 }
 
 export const updateDeckTC = (params: UpdateDeckParams) => async (dispatch: Dispatch) => {
-    return decksApi.updateDeck(params).then((res) => {
+    try {
+        const res = await decksApi.updateDeck(params)
         dispatch(updateDecksAC(res.data))
-    })
+    } catch (e) {
+        handleError(e, dispatch)
+    }
 }
 
 export const deleteDeckTC = (id: string) => (dispatch: AppDispatch) => {
